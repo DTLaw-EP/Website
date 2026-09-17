@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What "ABA-informed" actually means at the IEP table — DT Law</title>
+<meta name="description" content="A background in behavior therapy changes what we notice in an IEP meeting — and what we push back on.">
+<link rel="icon" type="image/svg+xml" href="../../assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="../../index.html#top" class="wordmark">
+      <img src="../../assets/logo-mark.svg" alt="" class="wordmark-mark" width="34" height="34">
+      DT <span>Law</span>
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="../../index.html#services">Practice Areas</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#process">How It Works</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../index.html#contact">Contact</a>
+      <a href="../../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <a href="../index.html" class="back-link" style="margin-top:40px;">&larr; Back to blog</a>
+  </div>
+
+  <header class="post-header">
+    <div class="wrap">
+      <p class="eyebrow">Education Advocacy</p>
+      <h1>What "ABA-informed" actually means at the IEP table</h1>
+      <p class="post-meta">August 3, 2026 · 4 min read</p>
+    </div>
+  </header>
+
+  <article class="post-body wrap">
+    <p>Most special education attorneys read an IEP the way a lawyer reads it: for compliance, deadlines, and procedural safeguards. That matters, and we do it too. But before this was a law practice, it was time spent as a Registered Behavior Technician working directly with children on the autism spectrum — and that changes what stands out in a draft goal or a proposed placement.</p>
+
+    <p class="pullquote">"A goal can be legally compliant and still be the wrong goal."</p>
+
+    <h2>What that background actually adds</h2>
+    <p>A few concrete examples of the difference it makes at the table:</p>
+    <ul>
+      <li><strong>Vague goals get flagged, not just noted.</strong> "Will improve social skills" isn't measurable — but knowing what a good replacement behavior goal actually looks like means we can propose specific, data-driven language on the spot, not just object to the vague one.</li>
+      <li><strong>Behavior plans get read for function, not just form.</strong> A behavior intervention plan can check every procedural box and still misidentify what's driving the behavior. That's usually visible before the data even comes up.</li>
+      <li><strong>Placement recommendations get weighed against what actually happens in the room.</strong> There's a difference between what a placement looks like on paper and what a school day in that room actually involves — and that's easier to picture with direct ABA experience.</li>
+    </ul>
+
+    <h2>What we do at an IEP or 504 meeting</h2>
+    <p>With your authorization, we review your child's records and the district's proposed IEP or 504 plan in advance, sit in on the meeting with you, and help translate what's being proposed — in plain terms — into whether it actually meets your child's needs and the district's legal obligations.</p>
+    <p>We also build out a timeline of your rights and the district's deadlines, so you're not relearning the procedural safeguards notice every time a new issue comes up.</p>
+
+    <h3>When to bring us in</h3>
+    <p>Any time school issues arise — but especially at transition points: entering kindergarten, moving from elementary to middle school, or the transition-services planning that starts around age 14½ and continues through the years leading up to graduation.</p>
+
+    <div class="post-cta">
+      <p><strong>If an IEP or 504 meeting is coming up</strong>, it's worth having your child's records reviewed beforehand.</p>
+      <a href="../../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This site is for general information only and does not constitute legal advice or create an attorney-client relationship.</p>
+    <div class="footer-links">
+      <a href="../../index.html#services">Practice Areas</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+  const toggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>

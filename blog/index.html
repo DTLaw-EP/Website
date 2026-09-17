@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — DT Law</title>
+<meta name="description" content="Notes on estate planning, special needs trusts, guardianship, and education advocacy from DT Law.">
+<link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="../index.html#top" class="wordmark">
+      <img src="../assets/logo-mark.svg" alt="" class="wordmark-mark" width="34" height="34">
+      DT <span>Law</span>
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#process">How It Works</a>
+      <a href="index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="blog-hero">
+    <div class="wrap">
+      <p class="eyebrow">From the practice</p>
+      <h1>Notes on planning for families beyond the standard norm</h1>
+      <p>Short, practical write-ups on estate planning, special needs trusts, guardianship, and education advocacy — for families navigating it for the first time.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="blog-grid">
+        <a class="blog-card" href="posts/special-needs-trust-basics.html">
+          <p class="eyebrow">Special Needs Trusts</p>
+          <h2>Why a special needs trust isn't optional if you're naming an inheritance</h2>
+          <p>Leaving money directly to a loved one who receives SSI or Medicaid can disqualify them from both. Here's how a trust avoids that.</p>
+          <p class="post-date">September 10, 2026 · 5 min read</p>
+        </a>
+        <a class="blog-card" href="posts/guardianship-timeline.html">
+          <p class="eyebrow">Guardianship</p>
+          <h2>The guardianship clock starts well before your child turns 18</h2>
+          <p>Your legal authority as a parent ends automatically at 18. What to file, and when, so there's no gap.</p>
+          <p class="post-date">August 22, 2026 · 4 min read</p>
+        </a>
+        <a class="blog-card" href="posts/aba-informed-advocacy.html">
+          <p class="eyebrow">Education Advocacy</p>
+          <h2>What "ABA-informed" actually means at the IEP table</h2>
+          <p>A background in behavior therapy changes what we notice in an IEP meeting — and what we push back on.</p>
+          <p class="post-date">August 3, 2026 · 4 min read</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This site is for general information only and does not constitute legal advice or create an attorney-client relationship.</p>
+    <div class="footer-links">
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="../index.html#about">About</a>
+      <a href="index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+  const toggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>

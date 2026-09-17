@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The guardianship clock starts well before your child turns 18 — DT Law</title>
+<meta name="description" content="Your legal authority as a parent ends automatically at 18. What to file, and when, so there's no gap.">
+<link rel="icon" type="image/svg+xml" href="../../assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="../../index.html#top" class="wordmark">
+      <img src="../../assets/logo-mark.svg" alt="" class="wordmark-mark" width="34" height="34">
+      DT <span>Law</span>
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="../../index.html#services">Practice Areas</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#process">How It Works</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../index.html#contact">Contact</a>
+      <a href="../../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <a href="../index.html" class="back-link" style="margin-top:40px;">&larr; Back to blog</a>
+  </div>
+
+  <header class="post-header">
+    <div class="wrap">
+      <p class="eyebrow">Guardianship</p>
+      <h1>The guardianship clock starts well before your child turns 18</h1>
+      <p class="post-meta">August 22, 2026 · 4 min read</p>
+    </div>
+  </header>
+
+  <article class="post-body wrap">
+    <p>Under Illinois law, your legal authority to make decisions for your child ends automatically on their 18th birthday — regardless of their diagnosis, cognitive ability, or how much support they still need. There's no grace period and no automatic extension.</p>
+    <p>If your child will need continued support with medical, financial, or educational decisions after 18, that authority has to be re-established through the court. Left until after the birthday, families can find themselves locked out of a hospital conversation or a school meeting with no legal standing to weigh in.</p>
+
+    <p class="pullquote">"Nothing about turning 18 changes overnight — except who's legally allowed to make the decision."</p>
+
+    <h2>Why we start 6–12 months out</h2>
+    <p>Guardianship petitions in Illinois require a physician's report, notice to the individual and certain relatives, and a court hearing. None of that happens instantly. Starting the process six to twelve months before the birthday gives enough runway to handle delays — a slow-to-schedule medical evaluation, a court date that gets pushed, or family members who need more time to respond to notice.</p>
+
+    <h3>Guardianship isn't the only option</h3>
+    <p>Full guardianship is the most restrictive option, and Illinois law specifically directs courts toward the <em>least restrictive alternative</em> that still meets your loved one's needs. Depending on the situation, that might mean:</p>
+    <ul>
+      <li><strong>Limited guardianship</strong> — authority over specific decisions only, leaving the rest to your loved one.</li>
+      <li><strong>Supported decision-making agreements</strong> — a newer, less restrictive tool that lets your loved one retain full legal decision-making with support.</li>
+      <li><strong>Powers of attorney</strong> — if your loved one has the capacity to sign them, these can cover many of the same needs without a court proceeding at all.</li>
+    </ul>
+    <p>Which of these fits depends entirely on your loved one's actual capacity — which is exactly what the evaluation and the conversation with us are for.</p>
+
+    <h2>What to have ready</h2>
+    <p>Before that first conversation, it helps to have a general sense of your child's current diagnoses, any recent evaluations, and the specific decisions you're most concerned about — medical, financial, educational, or living arrangements. We'll build the petition and evaluation around what actually applies.</p>
+
+    <div class="post-cta">
+      <p><strong>If your child is approaching 18</strong>, the best time to start this conversation is now, not after the birthday.</p>
+      <a href="../../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This site is for general information only and does not constitute legal advice or create an attorney-client relationship.</p>
+    <div class="footer-links">
+      <a href="../../index.html#services">Practice Areas</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+  const toggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>

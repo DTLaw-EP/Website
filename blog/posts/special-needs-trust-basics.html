@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why a special needs trust isn't optional if you're naming an inheritance — DT Law</title>
+<meta name="description" content="Leaving money directly to a loved one who receives SSI or Medicaid can disqualify them from both. Here's how a special needs trust avoids that.">
+<link rel="icon" type="image/svg+xml" href="../../assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="../../index.html#top" class="wordmark">
+      <img src="../../assets/logo-mark.svg" alt="" class="wordmark-mark" width="34" height="34">
+      DT <span>Law</span>
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="../../index.html#services">Practice Areas</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#process">How It Works</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../index.html#contact">Contact</a>
+      <a href="../../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <a href="../index.html" class="back-link" style="margin-top:40px;">&larr; Back to blog</a>
+  </div>
+
+  <header class="post-header">
+    <div class="wrap">
+      <p class="eyebrow">Special Needs Trusts</p>
+      <h1>Why a special needs trust isn't optional if you're naming an inheritance</h1>
+      <p class="post-meta">September 10, 2026 · 5 min read</p>
+    </div>
+  </header>
+
+  <article class="post-body wrap">
+    <p>It's one of the most common — and most costly — mistakes in estate planning for families with a loved one who has a disability: naming them directly as a beneficiary on a will, a life insurance policy, or a retirement account.</p>
+    <p>If that loved one receives Supplemental Security Income (SSI) or Medicaid, both programs are means-tested. SSI generally cuts off once a recipient has more than $2,000 in countable assets. An inheritance of even a few thousand dollars, paid directly, can disqualify them the same month it arrives — and getting requalified isn't instant.</p>
+
+    <p class="pullquote">"The inheritance doesn't have to be large to cause the problem. It just has to be direct."</p>
+
+    <h2>What a special needs trust actually does</h2>
+    <p>A special needs trust (sometimes called a supplemental needs trust) holds assets on behalf of your loved one instead of transferring them directly. Because the trust — not your loved one — legally owns the funds, they don't count against SSI or Medicaid's resource limits.</p>
+    <p>The trustee you name can still use those funds for things that improve your loved one's life: therapies not covered by insurance, adaptive equipment, education, transportation, even recreation. What the trust generally can't do is pay for things Medicaid already covers, like basic food and shelter, without affecting benefits — which is why the trust's terms need to be drafted carefully, not copied from a generic template.</p>
+
+    <h3>Where this comes up</h3>
+    <ul>
+      <li><strong>Your own estate plan.</strong> A will or living trust that leaves a share to a child with a disability should route that share into a special needs trust, not directly to them.</li>
+      <li><strong>Life insurance and retirement accounts.</strong> Beneficiary designations bypass your will entirely — they need to be updated separately to name the trust.</li>
+      <li><strong>A settlement or judgment.</strong> Personal injury settlements are a frequent trigger; the trust often needs to be in place before the settlement is finalized.</li>
+      <li><strong>A relative's estate.</strong> Grandparents and other relatives with your loved one in their own will are a common blind spot — they may not know a trust needs to exist at all.</li>
+    </ul>
+
+    <h2>The planning conversation, not just the document</h2>
+    <p>Drafting the trust is only part of it. The bigger question is who serves as trustee, how distributions get requested and documented, and how the trust coordinates with whatever benefits your loved one is receiving today — and might rely on for decades. That's the part worth a real conversation, not a form.</p>
+
+    <div class="post-cta">
+      <p><strong>If you're naming an inheritance for a loved one with a disability</strong>, it's worth reviewing your plan before it becomes urgent.</p>
+      <a href="../../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This site is for general information only and does not constitute legal advice or create an attorney-client relationship.</p>
+    <div class="footer-links">
+      <a href="../../index.html#services">Practice Areas</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+  const toggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
