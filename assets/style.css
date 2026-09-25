@@ -73,6 +73,7 @@ nav.wrap{
   transition:background .2s ease, color .2s ease;
 }
 .btn:hover{background:var(--forest-deep); border-color:var(--forest-deep);}
+.navlinks a.btn, .navlinks a.btn:hover{color:var(--white);}
 .btn:disabled{opacity:0.6; cursor:not-allowed;}
 .btn-ghost{
   background:transparent; color:var(--ink); border:1px solid var(--line);
