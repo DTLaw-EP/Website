@@ -177,7 +177,7 @@ section{padding:88px 0;}
 
 /* ---------- Contact / CTA ---------- */
 .contact-grid{
-  display:grid; grid-template-columns:1fr 1fr; gap:64px;
+  display:grid; grid-template-columns:1fr; gap:64px;
 }
 .contact-info dt{font-size:13px; color:var(--ink-soft); margin:20px 0 3px;}
 .contact-info dt:first-child{margin-top:0;}
@@ -200,6 +200,8 @@ section{padding:88px 0;}
   position:absolute; width:1px; height:1px; overflow:hidden;
   clip:rect(0 0 0 0); white-space:nowrap; margin:-1px;
 }
+/* Google's booking popup iframe is transparent on this page; give it a solid background */
+iframe[src*="calendar.google.com"]{background:#fff; border-radius:8px;}
 .book-online{margin-top:32px; padding-top:24px; border-top:1px solid var(--line);}
 .book-online-label{font-size:14px; margin-bottom:12px;}
 .form-status{font-size:14px; margin:14px 0 0; min-height:1.4em;}
