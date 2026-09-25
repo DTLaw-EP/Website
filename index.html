@@ -191,31 +191,6 @@
           <!-- end Google Calendar Appointment Scheduling -->
         </div>
       </div>
-      <form class="form-shell" id="contactForm" novalidate>
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required autocomplete="name">
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required autocomplete="email">
-        </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel">
-        </div>
-        <div class="field">
-          <label for="message">What's going on?</label>
-          <textarea id="message" name="message" required placeholder="A little about your family and what brings you here"></textarea>
-        </div>
-        <!-- honeypot field: hidden from real visitors, catches simple bots -->
-        <div class="field field-hp" aria-hidden="true">
-          <label for="company">Company</label>
-          <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
-        </div>
-        <button type="submit" class="btn" id="contactSubmit" style="width:100%;">Request a consultation</button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
     </div>
   </section>
 
@@ -249,60 +224,6 @@
     navlinks.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
   }));
-
-  // ---------- Contact form ----------
-  // Replace with the Lambda Function URL from the deployment steps.
-  const CONTACT_ENDPOINT = 'https://REPLACE-ME.lambda-url.us-east-1.on.aws/';
-
-  const form = document.getElementById('contactForm');
-  const statusEl = document.getElementById('formStatus');
-  const submitBtn = document.getElementById('contactSubmit');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    if (form.company.value) return; // honeypot tripped, silently drop
-
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-
-    if (!name || !email || !message) {
-      statusEl.textContent = 'Please fill in your name, email, and message.';
-      statusEl.className = 'form-status form-status-error';
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-    statusEl.textContent = '';
-    statusEl.className = 'form-status';
-
-    try {
-      const res = await fetch(CONTACT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: form.phone.value.trim(),
-          message
-        })
-      });
-
-      if (!res.ok) throw new Error('Request failed');
-
-      form.reset();
-      statusEl.textContent = "Thank you — your message has been sent. We'll be in touch soon.";
-      statusEl.className = 'form-status form-status-success';
-    } catch (err) {
-      statusEl.textContent = "Something went wrong sending your message. Please email yung@dtlaw-ep.com directly.";
-      statusEl.className = 'form-status form-status-error';
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Request a consultation';
-    }
-  });
 </script>
 
 </body>
