@@ -170,6 +170,26 @@
           <dt>Hours</dt>
           <dd>By appointment, weekdays</dd>
         </dl>
+        <div class="book-online">
+          <p class="book-online-label">Prefer to pick a time yourself?</p>
+          <!-- Google Calendar Appointment Scheduling begin -->
+          <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+          <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+          <script>
+          (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+              calendar.schedulingButton.load({
+                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3Iw_wVKv4ss7PuspW1nD63MPipBpXYcUJEUCq850we_ZhFPHMOLLQdjD8n_iacnZnJi-9iR6UC?gv=true',
+                color: '#2F4A3E',
+                label: 'Book a consultation',
+                target,
+              });
+            });
+          })();
+          </script>
+          <!-- end Google Calendar Appointment Scheduling -->
+        </div>
       </div>
       <form class="form-shell" id="contactForm" novalidate>
         <div class="field">
