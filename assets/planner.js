@@ -104,13 +104,13 @@ document.getElementById('btn-reset').addEventListener('click', function(){
 document.getElementById('btn-print').addEventListener('click', function(){ window.print(); });
 
 /* ---------------- generic list wiring ---------------- */
-function wireList(container, arr, opts){
+function wireList(container, getArr, opts){
   container.addEventListener('change', function(e){
     var field = e.target.dataset.field;
     if(!field) return;
     var idEl = e.target.closest('[data-id]');
     if(!idEl) return;
-    var item = arr.find(function(x){ return x.id === Number(idEl.dataset.id); });
+    var item = getArr().find(function(x){ return x.id === Number(idEl.dataset.id); });
     if(!item) return;
     var val = e.target.type==='checkbox' ? e.target.checked : e.target.value;
     if(e.target.type==='number') val = Math.max(0, Number(val)||0);
@@ -125,6 +125,7 @@ function wireList(container, arr, opts){
   container.addEventListener('click', function(e){
     var rm = e.target.closest('[data-remove]');
     if(!rm) return;
+    var arr = getArr();
     var idEl = rm.closest('[data-id]');
     var id = Number(idEl.dataset.id);
     var idx = arr.findIndex(function(x){ return x.id===id; });
@@ -133,14 +134,14 @@ function wireList(container, arr, opts){
     save(); renderAll();
   });
 }
-wireList(document.getElementById('family-list'), state.family, { onRemove: function(id){
+wireList(document.getElementById('family-list'), function(){ return state.family; }, { onRemove: function(id){
   state.family.forEach(function(p){ if(p.trustee===id) p.trustee=''; });
   if(state.executorId===id) state.executorId = state.family[0] ? state.family[0].id : null;
 }});
-wireList(document.getElementById('income-list'), state.income);
-wireList(document.getElementById('expense-list'), state.expenses);
-wireList(document.getElementById('goals-list'), state.goals);
-wireList(document.getElementById('checklist'), state.checklist);
+wireList(document.getElementById('income-list'), function(){ return state.income; });
+wireList(document.getElementById('expense-list'), function(){ return state.expenses; });
+wireList(document.getElementById('goals-list'), function(){ return state.goals; });
+wireList(document.getElementById('checklist'), function(){ return state.checklist; });
 
 document.getElementById('trustee-rows').addEventListener('change', function(e){
   var sel = e.target.closest('select[data-trustee-for]');
@@ -447,7 +448,7 @@ function renderPriorities(){
   });
 }
 ['col-now','col-short','col-long'].forEach(function(id){
-  wireList(document.getElementById(id), state.priorities);
+  wireList(document.getElementById(id), function(){ return state.priorities; });
 });
 
 /* ---------------- step 4: the plan ---------------- */
