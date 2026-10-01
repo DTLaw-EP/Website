@@ -3,29 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DT Law — Estate Planning and Advocacy for Families with Special Needs </title>
-<meta name="description" content="DT Law helps families plan and care for loved ones with special needs — trusts, guardianship, and education advocacy.">
-<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Family plan simulator &mdash; DT Law</title>
+<meta name="description" content="Build your family, see how an estate plan would be structured, and work through your priorities &mdash; a free planning tool from DT Law.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/planner.css">
 </head>
 <body>
 
 <header id="site-header">
   <nav class="wrap">
-    <a href="#top" class="wordmark">
-      <img src="assets/logo-mark.svg" alt="" class="wordmark-mark" width="34" height="34">
+    <a href="../index.html#top" class="wordmark">
+      <img src="../assets/logo-mark.svg" alt="" class="wordmark-mark" width="34" height="34">
       DT <span>Law</span>
     </a>
     <div class="navlinks" id="navlinks">
-      <a href="#services">Practice Areas</a>
-      <a href="#about">About</a>
-      <a href="#process">How It Works</a>
-      <a href="blog/index.html">Blog</a>
-      <a href="#contact">Contact</a>
-      <a href="#contact" class="btn">Schedule a Consultation</a>
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="../index.html#about">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html#contact" class="btn">Schedule a Consultation</a>
     </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
       <span></span><span></span><span></span>
@@ -33,187 +34,305 @@
   </nav>
 </header>
 
-<main id="top">
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow"> Special Needs Estate Planning, Guardianship, and Special Education Law </p>
-        <h1> Planning for families beyond the standard norm </h1>
-        <p class="hero-lede">DT Law helps parents and caregivers protect their loved ones with disabilities. One attorney, one point of contact, from the first conversation through every plan update after.</p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn">Schedule a Consultation</a>
-          <a href="#services" class="btn btn-ghost">See how we help</a>
-        </div>
+<main>
+  <section class="planner-hero">
+    <div class="wrap">
+      <p class="eyebrow">Free planning tool &middot; beta</p>
+      <h1>See how your family's plan could be structured</h1>
+      <p>Build out your family, your current picture, and your priorities. This is a starting point for a conversation, not a finished plan &mdash; and nothing you type here is saved anywhere but this browser.</p>
+      <div class="planner-privacy">
+        <span>Everything stays in your browser. Nothing is sent to us or saved anywhere else unless you choose to save a PDF.</span>
       </div>
-      <dl class="credentials">
-        <dt>Background</dt>
-        <dd>An ABA-informed legal practice.</dd>
-        <dt>Serving</dt>
-        <dd>Families across the Chicago suburbs</dd>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section-alt">
-    <div class="wrap gap-grid">
-      <p class="pullquote">"An estate plan that adapts and grows with your family and its needs."</p>
-      <div>
-        <p> An agile estate plan is the answer to those nagging questions that keep you up at night: How would my loved ones be cared for when I'm no longer around?</p>
-        <p> At DT Law, we do not simply plan for the distant future but the changing landscape of your family's needs. As your children grow and your family dynamic evolves, we build and adapt with you.</p>
+      <div class="planner-toolbar">
+        <button id="btn-example" class="btn btn-ghost btn-sm" type="button">Load an example</button>
+        <button id="btn-reset" class="btn btn-ghost btn-sm" type="button">Start over</button>
       </div>
     </div>
   </section>
 
-  <section id="services">
+  <div class="wrap">
+    <nav class="step-tabs" id="step-tabs" aria-label="Planner steps">
+      <button class="step-tab active" data-step="1" type="button"><span class="step-num">1</span>Family</button>
+      <button class="step-tab" data-step="2" type="button"><span class="step-num">2</span>Your picture</button>
+      <button class="step-tab" data-step="3" type="button"><span class="step-num">3</span>Priorities</button>
+      <button class="step-tab" data-step="4" type="button"><span class="step-num">4</span>Your plan</button>
+    </nav>
+  </div>
+
+  <!-- STEP 1: FAMILY -->
+  <section class="step-panel active" data-panel="1">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Practice areas</p>
-        <h2>Four ways we help, in the order families usually need them</h2>
+        <p class="eyebrow">Step 1</p>
+        <h2>Build your family</h2>
+        <p>Add the people in your life and how they relate to you. This includes spouses or partners, children, and anyone else who matters to your plan &mdash; exes, chosen family, parents you support.</p>
       </div>
-      <div class="pathway">
-        <div class="tier">
-          <div class="tier-num">01</div>
-          <div class="tier-body">
-            <h3>Basic estate planning</h3>
-            <p>A will, financial and health care powers of attorney, and a living will — drafted so they work with your family's special needs plan instead of against it.</p>
-            <p class="tier-meta">Where every family starts</p>
-          </div>
-        </div>
-        <div class="tier">
-          <div class="tier-num">02</div>
-          <div class="tier-body">
-            <h3>Special needs trusts</h3>
-            <p>A trust that holds an inheritance, settlement, or life insurance payout for your loved ones without counting against SSI or Medicaid resource limits.</p>
-            <p class="tier-meta">Before any inheritance or settlement is finalized</p>
-          </div>
-        </div>
-        <div class="tier">
-          <div class="tier-num">03</div>
-          <div class="tier-body">
-            <h3>Education advocacy</h3>
-            <p>Authorization and records access so we can sit in on IEP and 504 meetings with you, plus create a clear roadmap of your rights and the district's deadlines.</p>
-            <p class="tier-meta">Any time school issues arise, especially transition years</p>
-          </div>
-        </div>
-        <div class="tier">
-          <div class="tier-num">04</div>
-          <div class="tier-body">
-            <h3>Guardianship</h3>
-            <p>Your legal authority as a parent ends the day your child turns 18. We file for guardianship — or the least restrictive alternative — well ahead of that birthday.</p>
-            <p class="tier-meta">Beginning 6–12 months before age 18</p>
-          </div>
-        </div>
+
+      <div id="family-list" class="pl-list"></div>
+
+      <div class="pl-addrow">
+        <input type="text" id="np-name" placeholder="Name" class="pl-input-sm">
+        <select id="np-rel" class="pl-input-sm">
+          <option>Spouse or partner</option>
+          <option selected>Child</option>
+          <option>Step-child</option>
+          <option>Ex-spouse</option>
+          <option>Parent</option>
+          <option>Sibling</option>
+          <option>In-law</option>
+          <option>Niece or nephew</option>
+          <option>Grandchild</option>
+          <option>Aunt or uncle</option>
+          <option>Cousin</option>
+          <option>Friend or chosen family</option>
+          <option>Other</option>
+        </select>
+        <label class="pl-check"><input type="checkbox" id="np-minor">Minor</label>
+        <label class="pl-check"><input type="checkbox" id="np-sn">Special needs</label>
+        <button id="btn-add-person" class="btn" type="button">Add person</button>
+      </div>
+
+      <div class="pl-field-row" style="margin-top:2rem;">
+        <label for="executor-sel">Executor</label>
+        <select id="executor-sel"></select>
+      </div>
+      <div id="trustee-rows" class="pl-trustee-rows"></div>
+
+      <div class="pl-field-row">
+        <label for="estate-val">Total estate value (an estimate is fine)</label>
+        <input type="number" id="estate-val" step="10000">
+      </div>
+
+      <svg id="family-diagram" class="pl-diagram" viewBox="0 0 680 400" role="img" aria-label="Family tree and money flow diagram"></svg>
+      <div id="family-flags" class="pl-flags"></div>
+
+      <div class="pl-stepnav">
+        <span></span>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <button class="btn" data-goto="2" type="button">Next: Your picture</button>
       </div>
     </div>
   </section>
 
-  <section class="section-alt" id="about">
-    <div class="wrap about-grid">
-      <img src="About Yung Truong.jpg" alt="About attorney Yung Truong">
-      <div class="about-copy">
-        <p class="eyebrow">About DT Law</p>
-        <h2 style="font-size:clamp(24px,2.6vw,32px); margin-bottom:20px;">A practice built from both sides of the table</h2>
-        <p>After six years of practice in civil litigation, attorney Yung Truong took time away from the law to work as a Registered Behavior Technician. While working with children on the autism spectrum, she discovered that her true calling lies at the intersection between caregiving and advocating for children with special needs.</p>
-        <p class="pullquote">"Most estate planning treats a disability as an exception to plan around. Here, it's the plan."</p>
-        <p>That background shapes every document this firm drafts: language a family can actually act on, trustees who understand what "supplemental needs" means day to day, and a guardianship timeline that starts before it becomes an emergency.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="process">
+  <!-- STEP 2: YOUR PICTURE -->
+  <section class="step-panel" data-panel="2">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">How it works</p>
-        <h2>A straightforward path, from first call to a plan you can rely on and </h2>
+        <p class="eyebrow">Step 2</p>
+        <h2>Your current picture</h2>
+        <p>Where things stand today: your relationship status, income, expenses, and anything big you're saving toward.</p>
       </div>
-      <div class="process">
-        <div class="step">
-          <div class="step-line"></div>
-          <div class="step-dot"></div>
-          <h3>Consultation</h3>
-          <p>A conversation about your family, your loved one's needs, and which pieces of the plan matter most right now.</p>
-        </div>
-        <div class="step">
-          <div class="step-line"></div>
-          <div class="step-dot"></div>
-          <h3>Plan</h3>
-          <p>You'll get a clear, written recommendation — what to put in place now, and what can wait.</p>
-        </div>
-        <div class="step">
-          <div class="step-line"></div>
-          <div class="step-dot"></div>
-          <h3>Draft &amp; execute</h3>
-          <p>Documents drafted, reviewed together line by line, and signed in compliance with Illinois law.</p>
-        </div>
-        <div class="step">
-          <div class="step-line"></div>
-          <div class="step-dot"></div>
-          <h3>Review as life changes</h3>
-          <p>Plans get revisited as benefits rules change, your child ages, or your family's circumstances shift.</p>
-        </div>
+
+      <div class="pl-field-row">
+        <label for="rel-status">Relationship status</label>
+        <select id="rel-status">
+          <option>Married</option>
+          <option>Married, separated</option>
+          <option>Divorce in progress</option>
+          <option>Divorced</option>
+          <option>Remarried or repartnered</option>
+          <option>Unmarried partner (cohabiting)</option>
+          <option>Single</option>
+        </select>
+      </div>
+      <div class="pl-field-row" id="div-stage-row" style="display:none;">
+        <label for="div-stage">Divorce stage</label>
+        <select id="div-stage">
+          <option>Not yet filed</option>
+          <option>Filed</option>
+          <option>Finalized</option>
+        </select>
+      </div>
+      <label class="pl-check" style="margin:8px 0 1.5rem;">
+        <input type="checkbox" id="has-prior-kids">I have children from a prior relationship
+      </label>
+
+      <div class="pl-metrics">
+        <div class="pl-metric"><div class="pl-metric-label">Monthly income</div><div class="pl-metric-val" id="m-income"></div></div>
+        <div class="pl-metric"><div class="pl-metric-label">Monthly expenses</div><div class="pl-metric-val" id="m-expenses"></div></div>
+        <div class="pl-metric"><div class="pl-metric-label">Net cash flow</div><div class="pl-metric-val" id="m-net"></div></div>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Income sources</div>
+        <div id="income-list" class="pl-list"></div>
+        <button id="btn-add-income" class="btn btn-sm" type="button">Add income source</button>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Monthly expenses</div>
+        <div id="expense-list" class="pl-list"></div>
+        <button id="btn-add-expense" class="btn btn-sm" type="button">Add expense</button>
+      </div>
+
+      <div class="pl-metrics">
+        <div class="pl-metric"><div class="pl-metric-label">Total assets</div><div class="pl-metric-val" id="m-assets"></div></div>
+        <div class="pl-metric"><div class="pl-metric-label">Total debts</div><div class="pl-metric-val" id="m-debts"></div></div>
+        <div class="pl-metric"><div class="pl-metric-label">Net worth</div><div class="pl-metric-val" id="m-networth"></div></div>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Current assets and estimated values</div>
+        <div id="assets-list" class="pl-list"></div>
+        <button id="btn-add-asset" class="btn btn-sm" type="button">Add asset</button>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Debts and estimated balances</div>
+        <div id="debts-list" class="pl-list"></div>
+        <button id="btn-add-debt" class="btn btn-sm" type="button">Add debt</button>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Businesses you own or hold a share of</div>
+        <div id="businesses-list" class="pl-list"></div>
+        <button id="btn-add-business" class="btn btn-sm" type="button">Add business</button>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Upcoming large purchases and goals</div>
+        <div id="goals-list" class="pl-list"></div>
+        <button id="btn-add-goal" class="btn btn-sm" type="button">Add goal</button>
+      </div>
+
+      <div id="picture-flags" class="pl-flags"></div>
+
+      <div class="pl-stepnav">
+        <button class="btn btn-ghost" data-goto="1" type="button">Back</button>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <button class="btn" data-goto="3" type="button">Next: Priorities</button>
       </div>
     </div>
   </section>
 
-  <section class="section-alt" id="contact">
-    <div class="wrap contact-grid">
-      <div>
-        <p class="eyebrow">Get in touch</p>
-        <h2 style="font-size:clamp(24px,2.6vw,32px); margin-bottom:20px;">Start with a conversation</h2>
-        <p>The first consultation is about understanding your family's situation — there's no obligation, and no assumption about which services you'll need.</p>
-        <dl class="contact-info">
-          <dt>Email</dt>
-          <dd>yung@dtlaw-ep.com</dd>
-          <dt>Office</dt>
-          <dd>Naperville, IL</dd>
-          <dt>Hours</dt>
-          <dd>By appointment, weekdays</dd>
-        </dl>
-        <div class="book-online">
-          <p class="book-online-label">Prefer to pick a time yourself?</p>
-          <!-- Google Calendar Appointment Scheduling begin -->
-          <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-          <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-          <script>
-          (function() {
-            var target = document.currentScript;
-            window.addEventListener('load', function() {
-              calendar.schedulingButton.load({
-                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3Iw_wVKv4ss7PuspW1nD63MPipBpXYcUJEUCq850we_ZhFPHMOLLQdjD8n_iacnZnJi-9iR6UC?gv=true',
-                color: '#2F4A3E',
-                label: 'Book a consultation',
-                target,
-              });
-            });
-          })();
-          </script>
-          <!-- end Google Calendar Appointment Scheduling -->
+  <!-- STEP 3: PRIORITIES -->
+  <section class="step-panel" data-panel="3">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Step 3</p>
+        <h2>Sort your priorities</h2>
+        <p>Anything flagged in steps 1 and 2 shows up as a suggestion below. Add it with one click, or add your own, then sort everything into when you'll actually tackle it.</p>
+      </div>
+      <div id="pri-suggestions-wrap" style="display:none;margin-bottom:24px;">
+        <div class="pl-subhead">Suggested for you</div>
+        <div id="pri-suggestions" class="pl-list"></div>
+      </div>
+      <div class="pl-addrow">
+        <input type="text" id="np-pri-text" placeholder="Add a priority" class="pl-input-flex">
+        <select id="np-pri-cat" class="pl-input-sm">
+          <option>Documents</option><option>Trust</option><option>Guardianship</option><option>Savings</option><option>Business</option>
+        </select>
+        <select id="np-pri-pri" class="pl-input-sm">
+          <option value="now">Now</option><option value="short" selected>Short term</option><option value="long">Long term</option>
+        </select>
+        <button id="btn-add-priority" class="btn" type="button">Add</button>
+      </div>
+      <div class="pl-board">
+        <div class="pl-col">
+          <div class="pl-col-head">Now</div>
+          <div class="pl-col-sub">Within 30 days</div>
+          <div id="col-now" class="pl-col-body"></div>
         </div>
+        <div class="pl-col">
+          <div class="pl-col-head">Short term</div>
+          <div class="pl-col-sub">1 to 12 months</div>
+          <div id="col-short" class="pl-col-body"></div>
+        </div>
+        <div class="pl-col">
+          <div class="pl-col-head">Long term</div>
+          <div class="pl-col-sub">1 year or more</div>
+          <div id="col-long" class="pl-col-body"></div>
+        </div>
+      </div>
+
+      <div class="pl-stepnav">
+        <button class="btn btn-ghost" data-goto="2" type="button">Back</button>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <button class="btn" data-goto="4" type="button">Next: Your plan</button>
       </div>
     </div>
   </section>
 
+  <!-- STEP 4: THE PLAN -->
+  <section class="step-panel" data-panel="4">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Step 4</p>
+        <h2>Your plan, at a glance</h2>
+        <p>This pulls together what you've built so far into a plain-language summary and a checklist you can work through.</p>
+      </div>
+
+      <svg id="plan-diagram" class="pl-diagram" viewBox="0 0 680 260" role="img" aria-label="Diagram of the estate plan money flow"></svg>
+
+      <div class="pl-summary-card" id="plan-summary"></div>
+
+      <div class="pl-checklist-head">
+        <div class="pl-subhead">Plan checklist</div>
+        <div id="checklist-pct" class="pl-muted"></div>
+      </div>
+      <div class="pl-progress"><div id="checklist-bar" class="pl-progress-fill"></div></div>
+      <div id="checklist" class="pl-list"></div>
+
+      <div class="pl-actions">
+        <button id="btn-print" class="btn" type="button">Save as PDF</button>
+        <button id="btn-email" class="btn btn-ghost" type="button">Email this plan</button>
+      </div>
+      <p class="pl-muted" style="font-size:12.5px;margin-top:8px;">Email opens your own mail app, addressed to DT Law. Add your own address in Cc to keep a copy.</p>
+
+      <div class="pl-pricing">
+        <div class="pl-subhead">What this typically costs</div>
+        <p>Every plan is priced to the work involved, so this is a starting point, not a quote.</p>
+        <div class="pl-pricing-grid">
+          <div class="pl-pricing-tier">
+            <div class="pl-pricing-name">Foundation</div>
+            <div class="pl-pricing-amt">From $900 <span>to set up</span></div>
+            <div class="pl-pricing-amt">From $600 <span>/ year</span></div>
+            <p>Will, powers of attorney, living will.</p>
+          </div>
+          <div class="pl-pricing-tier">
+            <div class="pl-pricing-name">Family</div>
+            <div class="pl-pricing-amt">From $2,400 <span>to set up</span></div>
+            <div class="pl-pricing-amt">From $1,200 <span>/ year</span></div>
+            <p>Adds a trust, guardian nominations, and annual reviews.</p>
+          </div>
+          <div class="pl-pricing-tier">
+            <div class="pl-pricing-name">Family Plus</div>
+            <div class="pl-pricing-amt">From $3,600 <span>to set up</span></div>
+            <div class="pl-pricing-amt">From $2,400 <span>/ year</span></div>
+            <p>Adds a special needs trust and education advocacy.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pl-cta">
+        <p><strong>Ready to make this real?</strong> This tool is a starting point &mdash; the next step is a conversation.</p>
+        <a href="../index.html#contact" class="btn">Schedule a Consultation</a>
+      </div>
+
+      <div class="pl-stepnav">
+        <button class="btn btn-ghost" data-goto="3" type="button">Back</button>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <span></span>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="wrap footer-grid">
-    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This site is for general information only and does not constitute legal advice or create an attorney-client relationship.</p>
+    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This tool is for general information only, does not constitute legal advice, and does not create an attorney-client relationship.</p>
     <div class="footer-links">
-      <a href="#services">Practice Areas</a>
-      <a href="#about">About</a>
-      <a href="blog/index.html">Blog</a>
-      <a href="#contact">Contact</a>
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="../index.html#about">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
     </div>
   </div>
 </footer>
 
 <script>
   const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 8);
-  }, { passive: true });
-
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
   const toggle = document.getElementById('menuToggle');
   const navlinks = document.getElementById('navlinks');
   toggle.addEventListener('click', () => {
@@ -225,6 +344,7 @@
     toggle.setAttribute('aria-expanded', 'false');
   }));
 </script>
+<script src="../assets/planner.js"></script>
 
 </body>
 </html>
