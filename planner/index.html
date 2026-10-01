@@ -79,6 +79,11 @@
           <option>Ex-spouse</option>
           <option>Parent</option>
           <option>Sibling</option>
+          <option>In-law</option>
+          <option>Niece or nephew</option>
+          <option>Grandchild</option>
+          <option>Aunt or uncle</option>
+          <option>Cousin</option>
           <option>Friend or chosen family</option>
           <option>Other</option>
         </select>
@@ -100,6 +105,12 @@
 
       <svg id="family-diagram" class="pl-diagram" viewBox="0 0 680 400" role="img" aria-label="Family tree and money flow diagram"></svg>
       <div id="family-flags" class="pl-flags"></div>
+
+      <div class="pl-stepnav">
+        <span></span>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <button class="btn" data-goto="2" type="button">Next: Your picture</button>
+      </div>
     </div>
   </section>
 
@@ -154,9 +165,28 @@
         <button id="btn-add-expense" class="btn btn-sm" type="button">Add expense</button>
       </div>
 
+      <div class="pl-metrics">
+        <div class="pl-metric"><div class="pl-metric-label">Total assets</div><div class="pl-metric-val" id="m-assets"></div></div>
+        <div class="pl-metric"><div class="pl-metric-label">Total debts</div><div class="pl-metric-val" id="m-debts"></div></div>
+        <div class="pl-metric"><div class="pl-metric-label">Net worth</div><div class="pl-metric-val" id="m-networth"></div></div>
+      </div>
+
       <div class="pl-subsection">
-        <label class="pl-check"><input type="checkbox" id="has-biz">I own a business or a share of one</label>
-        <div id="biz-fields" class="pl-addrow" style="display:none;"></div>
+        <div class="pl-subhead">Current assets and estimated values</div>
+        <div id="assets-list" class="pl-list"></div>
+        <button id="btn-add-asset" class="btn btn-sm" type="button">Add asset</button>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Debts and estimated balances</div>
+        <div id="debts-list" class="pl-list"></div>
+        <button id="btn-add-debt" class="btn btn-sm" type="button">Add debt</button>
+      </div>
+
+      <div class="pl-subsection">
+        <div class="pl-subhead">Businesses you own or hold a share of</div>
+        <div id="businesses-list" class="pl-list"></div>
+        <button id="btn-add-business" class="btn btn-sm" type="button">Add business</button>
       </div>
 
       <div class="pl-subsection">
@@ -166,6 +196,12 @@
       </div>
 
       <div id="picture-flags" class="pl-flags"></div>
+
+      <div class="pl-stepnav">
+        <button class="btn btn-ghost" data-goto="1" type="button">Back</button>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <button class="btn" data-goto="3" type="button">Next: Priorities</button>
+      </div>
     </div>
   </section>
 
@@ -208,6 +244,12 @@
           <div id="col-long" class="pl-col-body"></div>
         </div>
       </div>
+
+      <div class="pl-stepnav">
+        <button class="btn btn-ghost" data-goto="2" type="button">Back</button>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <button class="btn" data-goto="4" type="button">Next: Your plan</button>
+      </div>
     </div>
   </section>
 
@@ -231,11 +273,46 @@
       <div class="pl-progress"><div id="checklist-bar" class="pl-progress-fill"></div></div>
       <div id="checklist" class="pl-list"></div>
 
-      <button id="btn-print" class="btn" type="button" style="margin-top:1.5rem;">Save as PDF</button>
+      <div class="pl-actions">
+        <button id="btn-print" class="btn" type="button">Save as PDF</button>
+        <button id="btn-email" class="btn btn-ghost" type="button">Email this plan</button>
+      </div>
+      <p class="pl-muted" style="font-size:12.5px;margin-top:8px;">Email opens your own mail app, addressed to DT Law. Add your own address in Cc to keep a copy.</p>
+
+      <div class="pl-pricing">
+        <div class="pl-subhead">What this typically costs</div>
+        <p>Every plan is priced to the work involved, so this is a starting point, not a quote.</p>
+        <div class="pl-pricing-grid">
+          <div class="pl-pricing-tier">
+            <div class="pl-pricing-name">Foundation</div>
+            <div class="pl-pricing-amt">From $900 <span>to set up</span></div>
+            <div class="pl-pricing-amt">From $600 <span>/ year</span></div>
+            <p>Will, powers of attorney, living will.</p>
+          </div>
+          <div class="pl-pricing-tier">
+            <div class="pl-pricing-name">Family</div>
+            <div class="pl-pricing-amt">From $2,400 <span>to set up</span></div>
+            <div class="pl-pricing-amt">From $1,200 <span>/ year</span></div>
+            <p>Adds a trust, guardian nominations, and annual reviews.</p>
+          </div>
+          <div class="pl-pricing-tier">
+            <div class="pl-pricing-name">Family Plus</div>
+            <div class="pl-pricing-amt">From $3,600 <span>to set up</span></div>
+            <div class="pl-pricing-amt">From $2,400 <span>/ year</span></div>
+            <p>Adds a special needs trust and education advocacy.</p>
+          </div>
+        </div>
+      </div>
 
       <div class="pl-cta">
         <p><strong>Ready to make this real?</strong> This tool is a starting point &mdash; the next step is a conversation.</p>
         <a href="../index.html#contact" class="btn">Schedule a Consultation</a>
+      </div>
+
+      <div class="pl-stepnav">
+        <button class="btn btn-ghost" data-goto="3" type="button">Back</button>
+        <span class="pl-save-indicator">Progress saves automatically in this browser</span>
+        <span></span>
       </div>
     </div>
   </section>
