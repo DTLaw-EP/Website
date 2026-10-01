@@ -287,63 +287,76 @@ function renderFamily(){
   renderFlags('family-flags', flags);
 }
 
-/* draws a row of people connected from one point, consolidating a shared trust into
-   a single box when two or more people in the row have the same trustee */
-function drawTrustAwareRow(positions, fromX, fromY, topY, peopleAll, labelFn){
+var SLOT = 150, MAX_PER_ROW = Math.max(1, Math.floor(680/SLOT)), ROW_PITCH = 134, BOX_W = 130, BOX_H = 44, TRUST_H = 42;
+
+/* groups items into slots: people needing a trust who share both the same connection
+   point and the same trustee are merged into one shared-trust slot; everyone else is solo */
+function buildSlots(items){
+  var groups = {};
+  var solo = [];
+  items.forEach(function(it){
+    if(needsTrust(it.p) && it.p.trustee){
+      var key = it.sourceKey+'|'+it.p.trustee;
+      (groups[key] = groups[key] || { source:it.source, dashed:it.dashed, trustee:it.p.trustee, members:[] }).members.push(it.p);
+    } else {
+      solo.push({ source:it.source, dashed:it.dashed, trustee: needsTrust(it.p) ? null : undefined, members:[it.p] });
+    }
+  });
+  return Object.keys(groups).map(function(k){ return groups[k]; }).concat(solo);
+}
+
+/* lays out slots in rows that wrap once a row would get too crowded, drawing a shared
+   trust box per slot when needed and fanning out to each member below it. returns the
+   bottom-most y used and a map of personId -> {cx, bottomY} for downstream connections */
+function renderFlow(slots, startY, peopleAll, labelFn){
   var out = '';
-  var trustGroups = {};
-  positions.forEach(function(cp){
-    if(needsTrust(cp.p) && cp.p.trustee){
-      var k = String(cp.p.trustee);
-      (trustGroups[k] = trustGroups[k] || []).push(cp);
-    }
-  });
-  var consolidated = {};
-  Object.keys(trustGroups).forEach(function(tid){
-    if(trustGroups[tid].length>1) trustGroups[tid].forEach(function(cp){ consolidated[cp.p.id]=true; });
-  });
-
-  Object.keys(trustGroups).forEach(function(tid){
-    var group = trustGroups[tid];
-    if(group.length<2) return;
-    var centerX = group.reduce(function(s,cp){ return s+cp.cx; },0)/group.length;
-    var tName = peopleAll.find(function(o){ return o.id===Number(tid); });
-    out += '<path d="M'+fromX+','+fromY+' C '+fromX+','+(topY-10)+' '+centerX+','+(topY-10)+' '+centerX+','+topY+'" class="pl-line"/>';
-    out += '<rect x="'+(centerX-70)+'" y="'+topY+'" width="140" height="42" rx="4" fill="var(--gold)"/>' +
-      '<text x="'+centerX+'" y="'+(topY+17)+'" text-anchor="middle" class="pl-t" style="fill:var(--forest-deep)">Shared trust</text>' +
-      '<text x="'+centerX+'" y="'+(topY+33)+'" text-anchor="middle" class="pl-ts" style="fill:var(--forest-deep)">Trustee: '+(tName?esc(tName.name):'none set')+'</text>';
-    var finalY = topY+52;
-    group.forEach(function(cp){
-      out += '<path d="M'+centerX+','+(topY+42)+' L'+cp.cx+','+finalY+'" class="pl-line"/>';
-      out += '<rect x="'+(cp.cx-65)+'" y="'+finalY+'" width="130" height="44" rx="4" fill="var(--white)" stroke="var(--line)"/>' +
-        '<text x="'+cp.cx+'" y="'+(finalY+17)+'" text-anchor="middle" class="pl-t">'+esc(cp.p.name)+'</text>' +
-        '<text x="'+cp.cx+'" y="'+(finalY+32)+'" text-anchor="middle" class="pl-ts">'+money(state.estateValue*cp.p.pct/100)+' ('+esc(labelFn(cp.p))+')</text>';
+  var posMap = {};
+  var rows = [];
+  for(var i=0;i<slots.length;i+=MAX_PER_ROW){ rows.push(slots.slice(i,i+MAX_PER_ROW)); }
+  var y = startY;
+  var maxY = startY;
+  rows.forEach(function(rowSlots){
+    var slotW = 680/rowSlots.length;
+    rowSlots.forEach(function(slot, i){
+      var cx = slotW*i + slotW/2;
+      var hasTrust = slot.trustee!==undefined;
+      out += '<path d="M'+slot.source.x+','+slot.source.y+' C '+slot.source.x+','+(y-10)+' '+cx+','+(y-10)+' '+cx+','+y+'" class="'+(slot.dashed?'pl-line-dashed':'pl-line')+'"/>';
+      var by = y;
+      if(hasTrust){
+        var tName = slot.trustee ? peopleAll.find(function(o){ return o.id===slot.trustee; }) : null;
+        var boxW = Math.min(140, slotW-10);
+        out += '<rect x="'+(cx-boxW/2)+'" y="'+by+'" width="'+boxW+'" height="'+TRUST_H+'" rx="4" fill="var(--gold)"/>' +
+          '<text x="'+cx+'" y="'+(by+17)+'" text-anchor="middle" class="pl-t" style="fill:var(--forest-deep)">'+(slot.members.length>1?'Shared trust':'Trust')+'</text>' +
+          '<text x="'+cx+'" y="'+(by+33)+'" text-anchor="middle" class="pl-ts" style="fill:var(--forest-deep)">Trustee: '+(tName?esc(tName.name):'none set')+'</text>';
+        by += TRUST_H+10;
+        out += '<path d="M'+cx+','+(by-10)+' L'+cx+','+by+'" class="pl-line"/>';
+      }
+      var spacing = Math.max(78, Math.min(BOX_W+6, slotW/slot.members.length));
+      var memberW = spacing-6;
+      slot.members.forEach(function(p, mi){
+        var mx = cx - (slot.members.length-1)*spacing/2 + mi*spacing;
+        if(slot.members.length>1){ out += '<path d="M'+cx+','+(by-8)+' L'+mx+','+by+'" class="pl-line"/>'; }
+        var fontPx = memberW<100 ? 11 : 13;
+        var fs = memberW<100 ? ' style="font-size:11px"' : '';
+        var moneyOnly = money(state.estateValue*p.pct/100);
+        var fullSub = moneyOnly+' ('+esc(labelFn(p))+')';
+        var sub = fullSub.length <= memberW/(fontPx*0.55) ? fullSub : moneyOnly;
+        out += '<rect x="'+(mx-memberW/2)+'" y="'+by+'" width="'+memberW+'" height="'+BOX_H+'" rx="4" fill="var(--white)" stroke="var(--line)"/>' +
+          '<text x="'+mx+'" y="'+(by+17)+'" text-anchor="middle" class="pl-t"'+fs+'>'+esc(p.name)+'</text>' +
+          '<text x="'+mx+'" y="'+(by+32)+'" text-anchor="middle" class="pl-ts"'+fs+'>'+sub+'</text>';
+        posMap[p.id] = { x: mx, y: by+BOX_H };
+      });
+      maxY = Math.max(maxY, by+BOX_H);
     });
+    y += ROW_PITCH;
   });
-
-  positions.forEach(function(cp){
-    if(consolidated[cp.p.id]) return;
-    out += '<path d="M'+fromX+','+fromY+' C '+fromX+','+(topY-10)+' '+cp.cx+','+(topY-10)+' '+cp.cx+','+topY+'" class="pl-line"/>';
-    var y = topY;
-    if(needsTrust(cp.p)){
-      var tName2 = peopleAll.find(function(o){ return o.id===cp.p.trustee; });
-      out += '<rect x="'+(cp.cx-65)+'" y="'+y+'" width="130" height="42" rx="4" fill="var(--gold)"/>' +
-        '<text x="'+cp.cx+'" y="'+(y+17)+'" text-anchor="middle" class="pl-t" style="fill:var(--forest-deep)">Trust</text>' +
-        '<text x="'+cp.cx+'" y="'+(y+33)+'" text-anchor="middle" class="pl-ts" style="fill:var(--forest-deep)">Trustee: '+(tName2?esc(tName2.name):'none set')+'</text>';
-      y += 52;
-      out += '<path d="M'+cp.cx+','+(y-10)+' L'+cp.cx+','+y+'" class="pl-line"/>';
-    }
-    out += '<rect x="'+(cp.cx-65)+'" y="'+y+'" width="130" height="44" rx="4" fill="var(--white)" stroke="var(--line)"/>' +
-      '<text x="'+cp.cx+'" y="'+(y+17)+'" text-anchor="middle" class="pl-t">'+esc(cp.p.name)+'</text>' +
-      '<text x="'+cp.cx+'" y="'+(y+32)+'" text-anchor="middle" class="pl-ts">'+money(state.estateValue*cp.p.pct/100)+' ('+esc(labelFn(cp.p))+')</text>';
-  });
-  return out;
+  return { svg: out, bottomY: maxY, posMap: posMap };
 }
 
 function drawFamilyDiagram(){
   var svg = document.getElementById('family-diagram');
   var people = state.family;
-  if(people.length===0){ svg.innerHTML = ''; return; }
+  if(people.length===0){ svg.innerHTML = ''; svg.setAttribute('viewBox','0 0 680 60'); return; }
   var spouse = people.find(function(p){ return p.rel==='Spouse or partner'; });
   var children = people.filter(function(p){ return CHILD_RELS.indexOf(p.rel)>-1; });
   var others = people.filter(function(p){ return p!==spouse && CHILD_RELS.indexOf(p.rel)===-1; });
@@ -355,40 +368,28 @@ function drawFamilyDiagram(){
     parts += '<rect x="330" y="15" width="120" height="40" rx="4" fill="var(--forest)"/><text x="390" y="34" text-anchor="middle" class="pl-t-on-dark">'+esc(spouse.name)+'</text><text x="390" y="49" text-anchor="middle" class="pl-ts-on-dark">Spouse or partner</text>';
     parts += '<path d="M290,35 L330,35" class="pl-line"/>';
     unionX = 310;
-    posMap[spouse.id] = { cx:390, bottomY:55 };
+    posMap[spouse.id] = { x:390, y:55 };
   }
   parts += '<path d="M'+unionX+',55 L'+unionX+',70" class="pl-line"/>';
 
-  var cw = 680/Math.max(children.length,1);
-  var childPositions = children.map(function(p,i){ return { p:p, cx: cw*i+cw/2 }; });
-  parts += drawTrustAwareRow(childPositions, unionX, 70, 90, people, function(p){ return p.rel; });
-  childPositions.forEach(function(cp){
-    var endY = 90 + (needsTrust(cp.p) ? 52+44 : 44);
-    posMap[cp.p.id] = { cx: cp.cx, bottomY: endY };
-  });
+  var childItems = children.map(function(p){ return { p:p, source:{x:unionX,y:70}, dashed:false, sourceKey:'children' }; });
+  var childFlow = renderFlow(buildSlots(childItems), 90, people, function(p){ return p.rel; });
+  parts += childFlow.svg;
+  Object.assign(posMap, childFlow.posMap);
+  var nextY = childFlow.bottomY + 50;
 
-  var ow = 680/Math.max(others.length,1);
-  others.forEach(function(p,i){
-    var cx = ow*i+ow/2;
-    var topY = 290;
-    var src = (p.via && posMap[p.via]) ? posMap[p.via] : { cx: unionX, bottomY: 70 };
-    parts += '<path d="M'+src.cx+','+src.bottomY+' L'+cx+','+topY+'" class="pl-line-dashed"/>';
-    var y = topY;
-    if(needsTrust(p)){
-      var tName = people.find(function(o){ return o.id===p.trustee; });
-      parts += '<rect x="'+(cx-65)+'" y="'+y+'" width="130" height="42" rx="4" fill="var(--gold)"/>' +
-        '<text x="'+cx+'" y="'+(y+17)+'" text-anchor="middle" class="pl-t" style="fill:var(--forest-deep)">Trust</text>' +
-        '<text x="'+cx+'" y="'+(y+33)+'" text-anchor="middle" class="pl-ts" style="fill:var(--forest-deep)">Trustee: '+(tName?esc(tName.name):'none set')+'</text>';
-      y += 52;
-      parts += '<path d="M'+cx+','+(y-10)+' L'+cx+','+y+'" class="pl-line"/>';
-    }
-    var via = p.via && people.find(function(o){ return o.id===p.via; });
-    var relLabel = via ? p.rel+' of '+via.name : p.rel;
-    parts += '<rect x="'+(cx-65)+'" y="'+y+'" width="130" height="44" rx="4" fill="var(--white)" stroke="var(--line)"/>' +
-      '<text x="'+cx+'" y="'+(y+17)+'" text-anchor="middle" class="pl-t">'+esc(p.name)+'</text>' +
-      '<text x="'+cx+'" y="'+(y+32)+'" text-anchor="middle" class="pl-ts">'+money(state.estateValue*p.pct/100)+' ('+esc(relLabel)+')</text>';
+  var otherItems = others.map(function(p){
+    var src = (p.via && posMap[p.via]) ? posMap[p.via] : { x: unionX, y: 70 };
+    return { p:p, source: src, dashed:true, sourceKey: 'via'+(p.via||'none') };
   });
+  var otherFlow = renderFlow(buildSlots(otherItems), others.length ? nextY : nextY, people, function(p){
+    var via = p.via && people.find(function(o){ return o.id===p.via; });
+    return via ? p.rel+' of '+via.name : p.rel;
+  });
+  parts += otherFlow.svg;
+
   svg.innerHTML = parts;
+  svg.setAttribute('viewBox', '0 0 680 '+Math.max(220, (others.length ? otherFlow.bottomY : childFlow.bottomY) + 20));
 }
 
 /* ---------------- step 2: your picture ---------------- */
@@ -607,13 +608,15 @@ function renderPlan(){
   var people = state.family;
   if(people.length===0){
     svg.innerHTML = '';
+    svg.setAttribute('viewBox','0 0 680 60');
     document.getElementById('plan-summary').textContent = 'Add your family in step 1 to see your plan summary here.';
   } else {
-    var cw = 680/people.length;
-    var positions = people.map(function(p,i){ return { p:p, cx: cw*i+cw/2 }; });
+    var items = people.map(function(p){ return { p:p, source:{x:340,y:50}, dashed:false, sourceKey:'estate' }; });
+    var flow = renderFlow(buildSlots(items), 80, people, function(p){ return p.pct+'%'; });
     var parts = '<rect x="280" y="10" width="120" height="40" rx="4" fill="var(--forest)"/><text x="340" y="34" text-anchor="middle" class="pl-t-on-dark">Your estate</text>';
-    parts += drawTrustAwareRow(positions, 340, 50, 80, people, function(p){ return p.pct+'%'; });
+    parts += flow.svg;
     svg.innerHTML = parts;
+    svg.setAttribute('viewBox', '0 0 680 '+Math.max(180, flow.bottomY+20));
 
     var sentences = people.map(function(p){
       var amt = money(state.estateValue*p.pct/100);
