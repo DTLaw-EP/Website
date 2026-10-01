@@ -87,20 +87,12 @@
 .pl-progress-fill-inner{background:var(--forest); height:100%;}
 .pl-goal-note{font-size:12.5px; color:var(--ink-soft);}
 
-.pl-board{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:8px;}
-.pl-col-head{font-family:'Fraunces',serif; font-size:17px; font-weight:500;}
-.pl-col-sub{font-size:12px; color:var(--ink-soft); margin-bottom:10px;}
-.pl-col-body{display:flex; flex-direction:column; gap:8px; min-height:60px;}
-.pl-pcard{background:var(--white); border:1px solid var(--line); border-radius:4px; padding:10px 12px;}
-.pl-pcard-top{display:flex; justify-content:space-between; align-items:flex-start; gap:6px; margin-bottom:6px;}
 .pl-tag{font-size:11.5px; padding:3px 8px; border-radius:3px; font-weight:500;}
 .pl-tag-Documents{background:var(--tag-doc-bg); color:var(--tag-doc-fg);}
 .pl-tag-Trust{background:var(--tag-trust-bg); color:var(--tag-trust-fg);}
 .pl-tag-Guardianship{background:var(--tag-guardian-bg); color:var(--tag-guardian-fg);}
 .pl-tag-Savings{background:var(--tag-savings-bg); color:var(--tag-savings-fg);}
 .pl-tag-Business{background:var(--tag-business-bg); color:var(--tag-business-fg);}
-.pl-pcard-text{font-size:13.5px; margin-bottom:8px;}
-.pl-pcard select{width:100%; font-size:12.5px; padding:6px 8px; border:1px solid var(--line); border-radius:3px; background:var(--paper);}
 .pl-col-empty{font-size:13px; color:var(--ink-soft); font-style:italic;}
 
 .pl-summary-card{background:var(--paper-warm); border-radius:4px; padding:20px 22px; font-size:15.5px; line-height:1.7; margin:24px 0 32px; color:var(--ink);}
@@ -118,22 +110,12 @@
 .pl-save-indicator{font-size:12.5px; color:var(--ink-soft); text-align:center;}
 .pl-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:1.5rem;}
 
-.pl-pricing{margin-top:40px; padding:24px 28px; background:var(--paper-warm); border:1px solid var(--line); border-radius:4px;}
-.pl-pricing p{font-size:14px; margin-bottom:16px;}
-.pl-pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
-.pl-pricing-tier{background:var(--white); border:1px solid var(--line); border-radius:4px; padding:16px;}
-.pl-pricing-name{font-family:'Fraunces',serif; font-size:17px; font-weight:500; margin-bottom:10px;}
-.pl-pricing-amt{font-size:14px; font-weight:500; margin-bottom:2px;}
-.pl-pricing-amt span{font-weight:400; color:var(--ink-soft); font-size:12.5px;}
-.pl-pricing-tier p{font-size:12.5px; color:var(--ink-soft); margin:8px 0 0;}
 @media (max-width:700px){
-  .pl-pricing-grid{grid-template-columns:1fr;}
   .pl-stepnav{flex-direction:column;}
 }
 
 @media (max-width:700px){
   .pl-metrics{grid-template-columns:1fr;}
-  .pl-board{grid-template-columns:1fr;}
   .pl-field-row select, .pl-field-row input{width:100%;}
 }
 
