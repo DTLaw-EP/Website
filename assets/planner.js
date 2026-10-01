@@ -39,12 +39,15 @@ function defaultState(){
 
 function exampleState(){
   var s = defaultState();
-  var jane = newId(), alex = newId(), maya = newId(), sam = newId();
+  var jane = newId(), alex = newId(), maya = newId(), sam = newId(), brother = newId(), sil = newId(), niece = newId();
   s.family = [
-    { id: jane, name:'Jane', rel:'Spouse or partner', pct:30, minor:false, sn:false, trustee:'', via:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: alex, name:'Alex', rel:'Child', pct:10, minor:false, sn:true, trustee:maya, via:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: sam, name:'Sam', rel:'Child', pct:10, minor:true, sn:false, trustee:maya, via:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: maya, name:'Maya', rel:'Child', pct:50, minor:false, sn:false, trustee:'', via:'', concerns:{money:true,substance:false,relStability:false,other:false}, note:'' }
+    { id: jane, name:'Jane', rel:'Spouse or partner', pct:25, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: alex, name:'Alex', rel:'Child', pct:10, minor:false, sn:true, trustee:maya, via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: sam, name:'Sam', rel:'Child', pct:10, minor:true, sn:false, trustee:maya, via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: maya, name:'Maya', rel:'Child', pct:40, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:true,substance:false,relStability:false,other:false}, note:'' },
+    { id: brother, name:'Brother', rel:'Sibling', pct:5, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: sil, name:'Sister in law', rel:'In-law', pct:5, minor:false, sn:false, trustee:'', via:'', partnerOf:brother, concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: niece, name:'Niece', rel:'Niece or nephew', pct:5, minor:true, sn:false, trustee:maya, via:brother, partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' }
   ];
   s.executorId = jane;
   s.estateValue = 500000;
@@ -85,7 +88,7 @@ function load(){
     if(!parsed.businesses) parsed.businesses = [];
     if(!parsed.assets) parsed.assets = [];
     if(!parsed.debts) parsed.debts = [];
-    (parsed.family||[]).forEach(function(p){ if(p.via===undefined) p.via=''; });
+    (parsed.family||[]).forEach(function(p){ if(p.via===undefined) p.via=''; if(p.partnerOf===undefined) p.partnerOf=''; });
     return parsed;
   }catch(e){ return defaultState(); }
 }
@@ -170,7 +173,7 @@ function wireList(container, getArr, opts){
 }
 wireList(document.getElementById('family-list'), function(){ return state.family; }, {
   onRemove: function(id){
-    state.family.forEach(function(p){ if(p.trustee===id) p.trustee=''; if(p.via===id) p.via=''; });
+    state.family.forEach(function(p){ if(p.trustee===id) p.trustee=''; if(p.via===id) p.via=''; if(p.partnerOf===id) p.partnerOf=''; });
     if(state.executorId===id) state.executorId = state.family[0] ? state.family[0].id : null;
   },
   onItemChange: function(item, field, arr){
@@ -179,7 +182,8 @@ wireList(document.getElementById('family-list'), function(){ return state.family
       if(othersTotal + item.pct > 100) item.pct = Math.max(0, 100-othersTotal);
     }
     if(field==='via'){ item.via = item.via ? Number(item.via) : ''; }
-    if(field==='rel' && (CHILD_RELS.indexOf(item.rel)>-1 || item.rel==='Spouse or partner')){ item.via=''; }
+    if(field==='partnerOf'){ item.partnerOf = item.partnerOf ? Number(item.partnerOf) : ''; }
+    if(field==='rel' && (CHILD_RELS.indexOf(item.rel)>-1 || item.rel==='Spouse or partner')){ item.via=''; item.partnerOf=''; }
   }
 });
 wireList(document.getElementById('income-list'), function(){ return state.income; });
@@ -207,7 +211,7 @@ function addPersonFromForm(){
   state.family.push({
     id:newId(), name:name, rel:document.getElementById('np-rel').value, pct:0,
     minor:document.getElementById('np-minor').checked, sn:document.getElementById('np-sn').checked,
-    trustee:'', via:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:''
+    trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:''
   });
   nameEl.value='';
   document.getElementById('np-minor').checked=false;
@@ -241,7 +245,9 @@ function personRow(p){
       '<button class="pl-remove" data-remove type="button" aria-label="Remove '+esc(p.name)+'">Remove</button>' +
     '</div>' +
     (isOther ? '<div class="pl-field-row" style="margin:8px 0 0;"><label style="min-width:150px;">Connected through</label><select data-field="via"><option value="">Not sure / none</option>' +
-      viaOptions.map(function(o){ return '<option value="'+o.id+'" '+(p.via===o.id?'selected':'')+'>'+esc(o.name)+'</option>'; }).join('') + '</select></div>' : '') +
+      viaOptions.map(function(o){ return '<option value="'+o.id+'" '+(p.via===o.id?'selected':'')+'>'+esc(o.name)+'</option>'; }).join('') + '</select></div>' +
+      '<div class="pl-field-row" style="margin:4px 0 0;"><label style="min-width:150px;">Partner / spouse of</label><select data-field="partnerOf"><option value="">Not paired with anyone here</option>' +
+      viaOptions.filter(function(o){ return CHILD_RELS.indexOf(o.rel)===-1 && o.rel!=='Spouse or partner'; }).map(function(o){ return '<option value="'+o.id+'" '+(p.partnerOf===o.id?'selected':'')+'>'+esc(o.name)+'</option>'; }).join('') + '</select></div>' : '') +
     '<div class="pl-concerns">' +
       '<span class="pl-muted">Concerns:</span>' +
       '<label class="pl-check"><input type="checkbox" data-field="concerns.money" '+(p.concerns.money?'checked':'')+'>Spending or debt</label>' +
@@ -281,7 +287,7 @@ function renderFamily(){
     if(p.minor && !p.trustee) flags.push({ok:false,text:esc(p.name)+' is a minor set to inherit directly. Illinois law doesn\'t allow that — choose a trustee above.'});
     if(p.sn && !p.trustee) flags.push({ok:false,text:esc(p.name)+' is flagged special needs but has no trustee. A trust protects benefits eligibility.'});
     if(hasConcern(p) && !p.trustee) flags.push({ok:false,text:esc(p.name)+' has a flagged concern. Consider a trust with staggered distributions instead of an outright gift.'});
-    if(p.sn && p.trustee) flags.push({ok:true,text:esc(p.name)+'’s share routes through a trust, keeping benefits eligibility intact.'});
+    if(p.sn && p.trustee) flags.push({ok:true,text:esc(p.name)+'’s share routes through its own special needs trust, keeping benefits eligibility intact.'});
   });
   if(state.family.length && !state.executorId) flags.push({ok:false,text:'No executor chosen yet.'});
   renderFlags('family-flags', flags);
@@ -289,17 +295,22 @@ function renderFamily(){
 
 var SLOT = 150, MAX_PER_ROW = Math.max(1, Math.floor(680/SLOT)), ROW_PITCH = 134, BOX_W = 130, BOX_H = 44, TRUST_H = 42;
 
-/* groups items into slots: people needing a trust who share both the same connection
-   point and the same trustee are merged into one shared-trust slot; everyone else is solo */
+/* groups items into slots: people needing an ordinary (minor or spendthrift-style) trust
+   who share both the same connection point and the same trustee are merged into one
+   shared-trust slot. A special needs trust is never pooled with anyone else, regardless
+   of trustee, because it requires its own precise statutory language (760 ILCS 3/509)
+   and pooling it with another beneficiary's trust would misrepresent the structure. */
 function buildSlots(items){
   var groups = {};
   var solo = [];
   items.forEach(function(it){
-    if(needsTrust(it.p) && it.p.trustee){
+    if(it.p.sn && it.p.trustee){
+      solo.push({ source:it.source, dashed:it.dashed, trustee:it.p.trustee, snt:true, members:[it.p] });
+    } else if(needsTrust(it.p) && it.p.trustee){
       var key = it.sourceKey+'|'+it.p.trustee;
       (groups[key] = groups[key] || { source:it.source, dashed:it.dashed, trustee:it.p.trustee, members:[] }).members.push(it.p);
     } else {
-      solo.push({ source:it.source, dashed:it.dashed, trustee: needsTrust(it.p) ? null : undefined, members:[it.p] });
+      solo.push({ source:it.source, dashed:it.dashed, trustee: needsTrust(it.p) ? null : undefined, snt: it.p.sn, members:[it.p] });
     }
   });
   return Object.keys(groups).map(function(k){ return groups[k]; }).concat(solo);
@@ -325,8 +336,9 @@ function renderFlow(slots, startY, peopleAll, labelFn){
       if(hasTrust){
         var tName = slot.trustee ? peopleAll.find(function(o){ return o.id===slot.trustee; }) : null;
         var boxW = Math.min(140, slotW-10);
+        var trustLabel = slot.snt ? 'Special needs trust' : (slot.members.length>1 ? 'Shared trust' : 'Trust');
         out += '<rect x="'+(cx-boxW/2)+'" y="'+by+'" width="'+boxW+'" height="'+TRUST_H+'" rx="4" fill="var(--gold)"/>' +
-          '<text x="'+cx+'" y="'+(by+17)+'" text-anchor="middle" class="pl-t" style="fill:var(--forest-deep)">'+(slot.members.length>1?'Shared trust':'Trust')+'</text>' +
+          '<text x="'+cx+'" y="'+(by+17)+'" text-anchor="middle" class="pl-t" style="fill:var(--forest-deep)">'+trustLabel+'</text>' +
           '<text x="'+cx+'" y="'+(by+33)+'" text-anchor="middle" class="pl-ts" style="fill:var(--forest-deep)">Trustee: '+(tName?esc(tName.name):'none set')+'</text>';
         by += TRUST_H+10;
         out += '<path d="M'+cx+','+(by-10)+' L'+cx+','+by+'" class="pl-line"/>';
@@ -347,6 +359,43 @@ function renderFlow(slots, startY, peopleAll, labelFn){
         posMap[p.id] = { x: mx, y: by+BOX_H };
       });
       maxY = Math.max(maxY, by+BOX_H);
+    });
+    y += ROW_PITCH;
+  });
+  return { svg: out, bottomY: maxY, posMap: posMap };
+}
+
+/* lays out partnered pairs (e.g. a sibling and their spouse) as two boxes side by side
+   with a union point below, so anyone "connected through" either partner branches from
+   the pair together rather than from one parent alone. returns posMap entries under BOTH
+   partner ids pointing to the same union point. */
+function layoutPairs(pairs, source, startY){
+  var out = '';
+  var posMap = {};
+  var pairSlot = SLOT*1.7;
+  var perRow = Math.max(1, Math.floor(680/pairSlot));
+  var rows = [];
+  for(var i=0;i<pairs.length;i+=perRow){ rows.push(pairs.slice(i,i+perRow)); }
+  var y = startY, maxY = startY;
+  rows.forEach(function(rowPairs){
+    var slotW = 680/rowPairs.length;
+    rowPairs.forEach(function(pair, i){
+      var cx = slotW*i + slotW/2;
+      out += '<path d="M'+source.x+','+source.y+' C '+source.x+','+(y-10)+' '+cx+','+(y-10)+' '+cx+','+y+'" class="pl-line-dashed"/>';
+      var boxW = Math.max(85, Math.min(120, slotW/2-8));
+      var ax = cx-boxW/2-3, bx = cx+boxW/2+3;
+      [[ax,pair.a],[bx,pair.b]].forEach(function(pair2){
+        var x=pair2[0], p=pair2[1];
+        var fs = boxW<100 ? ' style="font-size:11px"' : '';
+        out += '<rect x="'+(x-boxW/2)+'" y="'+y+'" width="'+boxW+'" height="'+BOX_H+'" rx="4" fill="var(--white)" stroke="var(--line)"/>' +
+          '<text x="'+x+'" y="'+(y+17)+'" text-anchor="middle" class="pl-t"'+fs+'>'+esc(p.name)+'</text>' +
+          '<text x="'+x+'" y="'+(y+32)+'" text-anchor="middle" class="pl-ts"'+fs+'>'+esc(p.rel)+'</text>';
+      });
+      out += '<path d="M'+(ax+boxW/2)+','+(y+BOX_H/2)+' L'+(bx-boxW/2)+','+(y+BOX_H/2)+'" class="pl-line"/>';
+      var unionY = y+BOX_H+10;
+      posMap[pair.a.id] = { x:cx, y:unionY };
+      posMap[pair.b.id] = { x:cx, y:unionY };
+      maxY = Math.max(maxY, unionY);
     });
     y += ROW_PITCH;
   });
@@ -378,11 +427,32 @@ function drawFamilyDiagram(){
   Object.assign(posMap, childFlow.posMap);
   var nextY = childFlow.bottomY + 50;
 
-  var otherItems = others.map(function(p){
+  /* find partner pairs among "others" so their shared dependents branch from a union
+     point between them, not from one partner alone */
+  var pairedIds = {};
+  var pairList = [];
+  others.forEach(function(p){
+    if(pairedIds[p.id] || !p.partnerOf) return;
+    var q = others.find(function(o){ return o.id===p.partnerOf; });
+    if(q && !pairedIds[q.id]){
+      pairList.push({ a:p, b:q });
+      pairedIds[p.id] = true; pairedIds[q.id] = true;
+    }
+  });
+  var pairFlow = { svg:'', bottomY: nextY, posMap:{} };
+  if(pairList.length){
+    pairFlow = layoutPairs(pairList, { x:unionX, y:70 }, nextY);
+    parts += pairFlow.svg;
+    Object.assign(posMap, pairFlow.posMap);
+    nextY = pairFlow.bottomY + 50;
+  }
+
+  var remainingOthers = others.filter(function(p){ return !pairedIds[p.id]; });
+  var otherItems = remainingOthers.map(function(p){
     var src = (p.via && posMap[p.via]) ? posMap[p.via] : { x: unionX, y: 70 };
     return { p:p, source: src, dashed:true, sourceKey: 'via'+(p.via||'none') };
   });
-  var otherFlow = renderFlow(buildSlots(otherItems), others.length ? nextY : nextY, people, function(p){
+  var otherFlow = renderFlow(buildSlots(otherItems), nextY, people, function(p){
     var via = p.via && people.find(function(o){ return o.id===p.via; });
     return via ? p.rel+' of '+via.name : p.rel;
   });
@@ -524,7 +594,7 @@ function computeSuggestions(){
       var text, detail;
       if(p.sn){
         text = 'Set up a special needs trust for '+p.name;
-        detail = 'Routes the share through a trust so it doesn’t count against SSI or Medicaid resource limits.';
+        detail = 'A third-party special needs trust keeps this share from counting against SSI or Medicaid eligibility. It needs its own precise terms — it can’t be pooled with a sibling’s trust, and an inheritance this size shouldn’t go into an ABLE account instead.';
       } else if(p.minor){
         text = 'Set up a trust for '+p.name+' (minor beneficiary)';
         detail = 'Illinois law doesn’t allow a minor to inherit property directly — a trustee manages it until they’re of age.';
@@ -545,7 +615,7 @@ function computeSuggestions(){
     s.push({key:'ex-beneficiary', text:'Remove your ex-spouse from beneficiary designations', detail:'Illinois revokes an ex-spouse’s share of a will automatically, but not beneficiary designations on insurance or retirement accounts.', cat:'Documents'});
   }
   if(state.relStatus==='Remarried or repartnered' && state.hasPriorKids){
-    s.push({key:'blended-trust', text:'Set up a trust to protect children from a prior relationship', detail:'Without this, assets left outright to a new spouse aren’t guaranteed to reach children from a prior relationship.', cat:'Trust'});
+    s.push({key:'blended-trust', text:'Set up a trust to protect children from a prior relationship', detail:'A QTIP or life insurance trust can provide for your spouse during their lifetime while still guaranteeing the remainder reaches your children, rather than your spouse’s estate or a new spouse.', cat:'Trust'});
   }
   if(state.relStatus==='Unmarried partner (cohabiting)'){
     s.push({key:'partner-will', text:'Name your partner in a will or trust', detail:'Illinois intestacy law gives unmarried partners no automatic inheritance rights at all.', cat:'Documents'});
