@@ -26,7 +26,6 @@ function defaultState(){
     debts: [],
     businesses: [],
     goals: [],
-    priorities: [],
     checklist: [
       { id: newId(), text:'Will', done:false },
       { id: newId(), text:'Financial power of attorney', done:false },
@@ -41,13 +40,13 @@ function exampleState(){
   var s = defaultState();
   var jane = newId(), alex = newId(), maya = newId(), sam = newId(), brother = newId(), sil = newId(), niece = newId();
   s.family = [
-    { id: jane, name:'Jane', rel:'Spouse or partner', pct:25, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: alex, name:'Alex', rel:'Child', pct:10, minor:false, sn:true, trustee:maya, via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: sam, name:'Sam', rel:'Child', pct:10, minor:true, sn:false, trustee:maya, via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: maya, name:'Maya', rel:'Child', pct:40, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:true,substance:false,relStability:false,other:false}, note:'' },
-    { id: brother, name:'Brother', rel:'Sibling', pct:5, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: sil, name:'Sister in law', rel:'In-law', pct:5, minor:false, sn:false, trustee:'', via:'', partnerOf:brother, concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
-    { id: niece, name:'Niece', rel:'Niece or nephew', pct:5, minor:true, sn:false, trustee:maya, via:brother, partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' }
+    { id: jane, name:'Jane', age:42, rel:'Spouse or partner', pct:25, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: alex, name:'Alex', age:22, rel:'Child', pct:10, minor:false, sn:true, trustee:maya, via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: sam, name:'Sam', age:9, rel:'Child', pct:10, minor:true, sn:false, trustee:maya, via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: maya, name:'Maya', age:20, rel:'Child', pct:40, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:true,substance:false,relStability:false,other:false}, note:'' },
+    { id: brother, name:'Brother', age:45, rel:'Sibling', pct:5, minor:false, sn:false, trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: sil, name:'Sister in law', age:43, rel:'In-law', pct:5, minor:false, sn:false, trustee:'', via:'', partnerOf:brother, concerns:{money:false,substance:false,relStability:false,other:false}, note:'' },
+    { id: niece, name:'Niece', age:12, rel:'Niece or nephew', pct:5, minor:true, sn:false, trustee:maya, via:brother, partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:'' }
   ];
   s.executorId = jane;
   s.estateValue = 500000;
@@ -88,7 +87,7 @@ function load(){
     if(!parsed.businesses) parsed.businesses = [];
     if(!parsed.assets) parsed.assets = [];
     if(!parsed.debts) parsed.debts = [];
-    (parsed.family||[]).forEach(function(p){ if(p.via===undefined) p.via=''; if(p.partnerOf===undefined) p.partnerOf=''; });
+    (parsed.family||[]).forEach(function(p){ if(p.via===undefined) p.via=''; if(p.partnerOf===undefined) p.partnerOf=''; if(p.age===undefined) p.age=null; });
     return parsed;
   }catch(e){ return defaultState(); }
 }
@@ -183,6 +182,10 @@ wireList(document.getElementById('family-list'), function(){ return state.family
     }
     if(field==='via'){ item.via = item.via ? Number(item.via) : ''; }
     if(field==='partnerOf'){ item.partnerOf = item.partnerOf ? Number(item.partnerOf) : ''; }
+    if(field==='age'){
+      item.age = Math.min(120, item.age);
+      item.minor = item.age < 18;
+    }
     if(field==='rel' && (CHILD_RELS.indexOf(item.rel)>-1 || item.rel==='Spouse or partner')){ item.via=''; item.partnerOf=''; }
   }
 });
@@ -208,12 +211,15 @@ function addPersonFromForm(){
   var name = nameEl.value.trim();
   if(!name){ nameEl.style.borderColor = '#9C3B2E'; return; }
   nameEl.style.borderColor = '';
+  var ageEl = document.getElementById('np-age');
+  var age = ageEl.value==='' ? null : Math.max(0, Math.min(120, Number(ageEl.value)));
   state.family.push({
-    id:newId(), name:name, rel:document.getElementById('np-rel').value, pct:0,
-    minor:document.getElementById('np-minor').checked, sn:document.getElementById('np-sn').checked,
+    id:newId(), name:name, age:age, rel:document.getElementById('np-rel').value, pct:0,
+    minor: age!==null ? age<18 : document.getElementById('np-minor').checked, sn:document.getElementById('np-sn').checked,
     trustee:'', via:'', partnerOf:'', concerns:{money:false,substance:false,relStability:false,other:false}, note:''
   });
   nameEl.value='';
+  ageEl.value='';
   document.getElementById('np-minor').checked=false;
   document.getElementById('np-sn').checked=false;
   save(); renderAll();
@@ -237,6 +243,7 @@ function personRow(p){
   return '<div class="pl-card" data-id="'+p.id+'">' +
     '<div class="pl-card-top">' +
       '<input type="text" class="pl-input-sm" data-field="name" value="'+esc(p.name)+'" placeholder="Name" aria-label="Name">' +
+      '<input type="number" class="pl-input-sm" style="width:70px" data-field="age" min="0" max="120" placeholder="Age" value="'+(p.age===null||p.age===undefined?'':p.age)+'" aria-label="Age">' +
       '<select class="pl-input-sm" data-field="rel" aria-label="Relationship">' + RELATIONS.map(function(r){ return '<option '+(p.rel===r?'selected':'')+'>'+r+'</option>'; }).join('') + '</select>' +
       '<input type="number" class="pl-input-sm" style="width:64px" data-field="pct" min="0" max="100" value="'+p.pct+'" aria-label="Share percent"> %' +
       '<span class="pl-card-sub">'+money(state.estateValue*p.pct/100)+'</span>' +
@@ -572,21 +579,7 @@ function renderPicture(){
   renderFlags('picture-flags', flags);
 }
 
-/* ---------------- step 3: priorities ---------------- */
-function addPriorityFromForm(){
-  var t = document.getElementById('np-pri-text');
-  var text = t.value.trim();
-  if(!text){ t.style.borderColor='#9C3B2E'; return; }
-  t.style.borderColor='';
-  state.priorities.push({ id:newId(), text:text, cat:document.getElementById('np-pri-cat').value, pri:document.getElementById('np-pri-pri').value });
-  t.value='';
-  save(); renderAll();
-}
-document.getElementById('btn-add-priority').addEventListener('click', addPriorityFromForm);
-document.getElementById('np-pri-text').addEventListener('keydown', function(e){
-  if(e.key==='Enter'){ e.preventDefault(); addPriorityFromForm(); }
-});
-
+/* ---------------- suggested next steps (shown on the plan page) ---------------- */
 function computeSuggestions(){
   var s = [];
   state.family.forEach(function(p){
@@ -627,53 +620,23 @@ function computeSuggestions(){
   });
   return s;
 }
-document.getElementById('pri-suggestions').addEventListener('click', function(e){
-  var btn = e.target.closest('[data-add-suggestion]');
-  if(!btn) return;
-  var card = btn.closest('[data-suggest-key]');
-  var key = card.dataset.suggestKey;
-  var sug = computeSuggestions().find(function(s){ return s.key===key; });
-  if(!sug) return;
-  state.priorities.push({ id:newId(), text:sug.text, detail:sug.detail, cat:sug.cat, pri:'short', sourceKey:key });
-  save(); renderAll();
-});
 function renderSuggestions(){
-  var existingKeys = state.priorities.map(function(p){ return p.sourceKey; }).filter(Boolean);
-  var suggestions = computeSuggestions().filter(function(s){ return existingKeys.indexOf(s.key)===-1; });
+  var suggestions = computeSuggestions();
   document.getElementById('pri-suggestions-wrap').style.display = suggestions.length ? '' : 'none';
   document.getElementById('pri-suggestions').innerHTML = suggestions.map(function(s){
-    return '<div class="pl-card" data-suggest-key="'+s.key+'">' +
+    return '<div class="pl-card">' +
       '<div style="display:flex;align-items:center;gap:10px;">' +
         '<span class="pl-tag pl-tag-'+s.cat+'">'+s.cat+'</span>' +
         '<span style="flex:1;font-size:13.5px;font-weight:500;">'+esc(s.text)+'</span>' +
-        '<button class="btn btn-sm" data-add-suggestion type="button">Add</button>' +
       '</div>' +
       (s.detail ? '<div class="pl-muted" style="font-size:12.5px;margin-top:4px;">'+esc(s.detail)+'</div>' : '') +
     '</div>';
   }).join('');
 }
 
-function priorityCard(i){
-  return '<div class="pl-pcard" data-id="'+i.id+'">' +
-    '<div class="pl-pcard-top"><span class="pl-tag pl-tag-'+i.cat+'">'+i.cat+'</span><button class="pl-remove" data-remove type="button" aria-label="Remove">×</button></div>' +
-    '<div class="pl-pcard-text">'+esc(i.text)+'</div>' +
-    (i.detail ? '<div class="pl-muted" style="font-size:12px;margin:-4px 0 8px;">'+esc(i.detail)+'</div>' : '') +
-    '<select data-field="pri"><option value="now" '+(i.pri==='now'?'selected':'')+'>Now</option><option value="short" '+(i.pri==='short'?'selected':'')+'>Short term</option><option value="long" '+(i.pri==='long'?'selected':'')+'>Long term</option></select>' +
-  '</div>';
-}
-function renderPriorities(){
-  renderSuggestions();
-  ['now','short','long'].forEach(function(k){
-    var items = state.priorities.filter(function(i){ return i.pri===k; });
-    document.getElementById('col-'+k).innerHTML = items.map(priorityCard).join('') || '<div class="pl-col-empty">Nothing here yet.</div>';
-  });
-}
-['col-now','col-short','col-long'].forEach(function(id){
-  wireList(document.getElementById(id), function(){ return state.priorities; });
-});
-
 /* ---------------- step 4: the plan ---------------- */
 function renderPlan(){
+  renderSuggestions();
   var svg = document.getElementById('plan-diagram');
   var people = state.family;
   if(people.length===0){
@@ -721,7 +684,6 @@ function renderFlags(elId, flags){
 function renderAll(){
   renderFamily();
   renderPicture();
-  renderPriorities();
   renderPlan();
 }
 renderAll();
