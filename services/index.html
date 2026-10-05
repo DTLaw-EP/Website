@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services and Pricing | DT Law</title>
+<meta name="description" content="Estate planning plans from DT Law in Naperville, IL: Foundation, Living Trust, and Special Needs plans, with what each includes and how fees work.">
+<link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Page-specific styles, built on the site's existing color tokens */
+  .svc-hero{padding:64px 0 24px;}
+  .svc-hero h1{font-size:clamp(30px,4vw,44px); max-width:18ch; line-height:1.12;}
+  .svc-hero p{font-size:17px; max-width:56ch; margin-top:16px;}
+  .svc-plans{padding:40px 0 88px;}
+  .svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:stretch;}
+  .svc-card{
+    background:var(--white); border:1px solid var(--line); border-top:3px solid var(--forest);
+    border-radius:3px; padding:30px 28px 28px; display:flex; flex-direction:column; min-width:0;
+  }
+  .svc-card h2{font-size:26px; line-height:1.15; margin-bottom:10px;}
+  .svc-for{font-size:15px; font-style:italic; margin-bottom:22px; min-height:4.8em;}
+  .svc-price{border-top:1px solid var(--gold); border-bottom:1px solid var(--line); padding:16px 0; margin-bottom:22px;}
+  .svc-price .svc-label{display:block; font-size:13px; color:var(--forest); font-weight:500; margin-bottom:4px;}
+  .svc-price .svc-amount{font-family:'Fraunces',serif; font-size:26px; line-height:1.2; color:var(--forest-deep); font-weight:500;}
+  .svc-price .svc-sub{display:block; font-size:14px; color:var(--ink-soft); margin-top:6px;}
+  .svc-card h3{font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--forest); letter-spacing:.04em; text-transform:uppercase; margin:0 0 10px;}
+  .svc-list{list-style:none; padding:0; margin:0 0 24px;}
+  .svc-list li{position:relative; padding-left:20px; margin-bottom:8px; font-size:15px; color:var(--ink-soft); line-height:1.5;}
+  .svc-list li::before{content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--gold);}
+  .svc-list strong{color:var(--ink); font-weight:600;}
+  .svc-overage{margin-top:auto; padding-top:16px; border-top:1px solid var(--line); font-size:14px; color:var(--ink-soft); margin-bottom:0;}
+  .svc-overage strong{color:var(--forest-deep);}
+
+  .svc-table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:3px; background:var(--white);}
+  .svc-table{width:100%; border-collapse:collapse; font-size:15px; min-width:560px;}
+  .svc-table th, .svc-table td{padding:14px 18px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top;}
+  .svc-table thead th{font-family:'Fraunces',serif; font-weight:500; font-size:17px; color:var(--forest-deep); background:var(--paper);}
+  .svc-table tbody th{font-weight:500; color:var(--ink);}
+  .svc-table td{color:var(--ink-soft);}
+  .svc-table tr:last-child th, .svc-table tr:last-child td{border-bottom:none;}
+  .svc-table .svc-total th, .svc-table .svc-total td{background:var(--paper); font-weight:600; color:var(--forest-deep);}
+
+  .svc-fees{display:grid; grid-template-columns:1fr 1fr; gap:0 64px;}
+  .svc-fees .tier{grid-template-columns:1fr; gap:6px;}
+  .svc-fees .tier h3{font-size:19px;}
+  .svc-fees .tier p{font-size:15.5px; margin-bottom:0;}
+  .svc-note{font-size:14px; margin-top:32px; max-width:70ch;}
+
+  @media (max-width:980px){
+    .svc-grid{grid-template-columns:1fr; max-width:560px;}
+    .svc-for{min-height:0;}
+    .svc-fees{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    .svc-card{padding:24px 20px;}
+    .svc-hero{padding-top:44px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="../index.html#top" class="wordmark">
+      <img src="../assets/logo-full.svg" alt="DT Law" class="wordmark-mark" height="52">
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#process">How It Works</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="svc-hero">
+    <div class="wrap">
+      <p class="eyebrow">Services and Pricing</p>
+      <h1>Plans built around how your family actually lives.</h1>
+      <p>Every plan begins with a consultation, and your fees and scope are confirmed in writing before any work starts.</p>
+    </div>
+  </section>
+
+  <section class="svc-plans" aria-label="Estate planning plans">
+    <div class="wrap">
+      <div class="svc-grid">
+
+        <article class="svc-card">
+          <h2>Foundation Plan</h2>
+          <p class="svc-for">For individuals and couples with straightforward estates who want the core protections in place.</p>
+          <div class="svc-price">
+            <span class="svc-label">Flat fee</span>
+            <span class="svc-amount">$1,250 individual</span>
+            <span class="svc-amount">$1,875 couple</span>
+          </div>
+          <h3>What&rsquo;s included</h3>
+          <ul class="svc-list">
+            <li>Last will and testament</li>
+            <li>Financial power of attorney</li>
+            <li>Health care power of attorney</li>
+            <li>Living will</li>
+            <li>Transfer on death instrument for real property</li>
+          </ul>
+          <h3>Your fee covers</h3>
+          <ul class="svc-list">
+            <li>Intake and onboarding: 1 hour</li>
+            <li>Post-intake consultation: 1 hour</li>
+            <li>Drafting: 3&ndash;5 hours</li>
+            <li>Review with you: 1 hour</li>
+            <li>Up to 2 rounds of revisions</li>
+            <li>Final signing, including notary and witnesses as needed</li>
+          </ul>
+          <p class="svc-overage"><strong>$395/hour</strong> for any work beyond 10 hours.</p>
+        </article>
+
+        <article class="svc-card">
+          <h2>Living Trust Plan</h2>
+          <p class="svc-for">For homeowners, business owners, and families who want privacy, control, and a smoother transition.</p>
+          <div class="svc-price">
+            <span class="svc-label">Initial retainer, starting at</span>
+            <span class="svc-amount">$3,500</span>
+          </div>
+          <h3>What&rsquo;s included</h3>
+          <ul class="svc-list">
+            <li>Revocable living trust</li>
+            <li>Pour-over will</li>
+            <li>Powers of attorney and living will</li>
+            <li>Guidance on funding the trust (deeds, accounts, beneficiary designations)</li>
+            <li>Guidance on a business succession plan</li>
+            <li>Recording of the instrument is <strong>not</strong> included</li>
+          </ul>
+          <h3>Your fee covers</h3>
+          <ul class="svc-list">
+            <li>Intake and onboarding: 1 hour</li>
+            <li>Post-intake consultation: 1 hour</li>
+            <li>Drafting: 5&ndash;7 hours</li>
+            <li>Review with you: 1&ndash;2 hours</li>
+            <li>Up to 2 rounds of revisions</li>
+            <li>Final signing, including notary and witnesses as needed</li>
+          </ul>
+          <p class="svc-overage"><strong>$395/hour</strong> for any work beyond 15 hours.</p>
+        </article>
+
+        <article class="svc-card">
+          <h2>Special Needs Plan</h2>
+          <p class="svc-for">For families with a loved one who receives, or may need, public benefits.</p>
+          <div class="svc-price">
+            <span class="svc-label">Initial retainer, starting at</span>
+            <span class="svc-amount">$5,000</span>
+          </div>
+          <h3>What&rsquo;s included</h3>
+          <ul class="svc-list">
+            <li>Everything in the <strong>Living Trust Plan</strong></li>
+            <li>Third-party supplemental needs trust</li>
+            <li>Review of how your plan interacts with benefits such as SSI and Medicaid</li>
+            <li>Letter of intent for future caregivers</li>
+            <li>Guardianship planning and nominations</li>
+            <li>Coordinated with your will or living trust</li>
+          </ul>
+          <h3>Your fee covers</h3>
+          <ul class="svc-list">
+            <li>Intake and onboarding: 1 hour</li>
+            <li>Post-intake consultation: 1 hour</li>
+            <li>Drafting: 8&ndash;10 hours</li>
+            <li>Review with you: 1&ndash;2 hours</li>
+            <li>Up to 2 rounds of revisions</li>
+            <li>Final signing, including notary and witnesses as needed</li>
+          </ul>
+          <p class="svc-overage"><strong>$395/hour</strong> for any work beyond 20 hours.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" aria-label="Compare plans">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Compare</p>
+        <h2>What your fee covers, side by side</h2>
+      </div>
+      <div class="svc-table-wrap">
+        <table class="svc-table">
+          <thead>
+            <tr><th scope="col"></th><th scope="col">Foundation</th><th scope="col">Living Trust</th><th scope="col">Special Needs</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">How you pay</th><td>Flat fee</td><td>Initial retainer</td><td>Initial retainer</td></tr>
+            <tr><th scope="row">Starting at</th><td>$1,250 individual<br>$1,875 couple</td><td>$3,500</td><td>$5,000</td></tr>
+            <tr><th scope="row">Intake and onboarding</th><td>1 hour</td><td>1 hour</td><td>1 hour</td></tr>
+            <tr><th scope="row">Post-intake consultation</th><td>1 hour</td><td>1 hour</td><td>1 hour</td></tr>
+            <tr><th scope="row">Drafting</th><td>3&ndash;5 hours</td><td>5&ndash;7 hours</td><td>8&ndash;10 hours</td></tr>
+            <tr><th scope="row">Review with you</th><td>1 hour</td><td>1&ndash;2 hours</td><td>1&ndash;2 hours</td></tr>
+            <tr><th scope="row">Revision rounds</th><td>Up to 2</td><td>Up to 2</td><td>Up to 2</td></tr>
+            <tr><th scope="row">Final signing</th><td>Included</td><td>Included</td><td>Included</td></tr>
+            <tr class="svc-total"><th scope="row">Hourly rate beyond</th><td>$395 after 10 hours</td><td>$395 after 15 hours</td><td>$395 after 20 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="How fees work">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How fees work</p>
+        <h2>No surprises, and everything in writing</h2>
+      </div>
+      <div class="svc-fees">
+        <div class="tier">
+          <div class="tier-body">
+            <h3>Start with a consultation</h3>
+            <p>We talk through your family, your concerns, and which plan fits your situation, so you can choose with a clear picture of the scope.</p>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-body">
+            <h3>Confirmed in writing</h3>
+            <p>Your fee, the scope of work, and how any retainer is handled are set out in an engagement agreement that you sign before work begins.</p>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-body">
+            <h3>Hours are defined</h3>
+            <p>Each plan lists the time it covers, from intake through signing. Work beyond those hours is billed at $395/hour.</p>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-body">
+            <h3>Not included</h3>
+            <p>Recording of deeds and other instruments, and any government filing or recording fees, which are set by the county or agency and not by DT Law.</p>
+          </div>
+        </div>
+      </div>
+      <p class="svc-note">Starting prices reflect typical scope. Your exact fee depends on your family and your assets and is confirmed after your consultation. This page is general information, not legal advice. See the <a href="../disclaimer/index.html">Disclaimer</a> for details.</p>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:28px;">
+        <p class="eyebrow">Next step</p>
+        <h2>Not sure which plan fits? Start with a consultation.</h2>
+      </div>
+      <a href="../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This site is for general information only and does not constitute legal advice or create an attorney-client relationship.</p>
+    <div class="footer-links">
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="index.html">Services &amp; Pricing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../disclaimer/index.html">Disclaimer</a>
+      <a href="../privacy/index.html">Privacy</a>
+    </div>
+  </div>
+  <div class="wrap"><p class="footer-note" style="max-width:none; margin-top:28px;">&copy; 2026 DT Law. All rights reserved.</p></div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+  const toggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
