@@ -56,7 +56,7 @@ nav.wrap{
 }
 .wordmark span{color:var(--forest);}
 .wordmark-mark{flex-shrink:0;}
-.navlinks{display:flex; gap:36px; align-items:center;}
+.navlinks{display:flex; gap:20px; align-items:center;}
 .navlinks a{
   text-decoration:none; color:var(--ink-soft); font-size:15px;
   position:relative; padding:4px 0;
@@ -297,8 +297,8 @@ footer{padding:48px 0; border-top:1px solid var(--line);}
   .navlinks .btn{margin-top:12px;}
 }
 
-/* Collapse the header to the menu button below 960px so the wider logo and button never crowd the links */
-@media (max-width:960px){
+/* Collapse the header to the menu button below 1100px so the wider logo, six links and button never crowd each other */
+@media (max-width:1100px){
   .navlinks{
     position:fixed; inset:76px 0 0 0; background:var(--paper);
     flex-direction:column; align-items:flex-start; padding:32px;
