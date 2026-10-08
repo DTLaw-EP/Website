@@ -10,6 +10,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  .lc-snip{padding:64px 0;}
+  .lc-snip-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center;}
+  .lc-snip h2{font-size:clamp(26px,3vw,36px); line-height:1.15; margin-bottom:14px;}
+  .lc-snip p{font-size:16.5px;}
+  .lc-snip .btn{margin-top:8px;}
+  .lc-snip-label{font-size:13px; font-weight:500; color:var(--forest); letter-spacing:.01em; margin-bottom:12px;}
+  .lc-chips{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:10px;}
+  .lc-chips a{display:inline-block; text-decoration:none; background:var(--white); border:1px solid var(--line); border-radius:99px; padding:9px 18px; font-size:15px; color:var(--ink);}
+  .lc-chips a:hover{border-color:var(--forest); color:var(--forest-deep);}
+  @media (max-width:860px){ .lc-snip{padding:48px 0;} .lc-snip-grid{grid-template-columns:1fr; gap:28px;} }
+</style>
 </head>
 <body>
 
@@ -55,12 +67,26 @@
     </div>
   </section>
 
-  <section class="section-alt">
-    <div class="wrap gap-grid">
-      <p class="pullquote">"An estate plan that adapts and grows with your family and its needs."</p>
+  <section class="section-alt lc-snip" aria-labelledby="lc-snip-h">
+    <div class="wrap lc-snip-grid">
       <div>
-        <p> An agile estate plan is the answer to those nagging questions that keep you up at night: How would my loved ones be cared for when I'm no longer around?</p>
-        <p> At DT Law, we do not simply plan for the distant future but the changing landscape of your family's needs. As your children grow and your family dynamic evolves, we build and adapt with you.</p>
+        <p class="eyebrow">The Life Cycle of Families</p>
+        <h2 id="lc-snip-h">Your plan should change when your life does.</h2>
+        <p>Marriage, a new child, a growing business, an illness, a divorce: each one is a moment when the documents you signed may no longer fit. See what changes at each stage, and which documents to look at first.</p>
+        <a href="life-cycle/index.html" class="btn">Explore the life cycle</a>
+      </div>
+      <div>
+        <p class="lc-snip-label">Start with where you are</p>
+        <ul class="lc-chips">
+          <li><a href="life-cycle/index.html#marriage">Marriage</a></li>
+          <li><a href="life-cycle/index.html#children">A new child</a></li>
+          <li><a href="life-cycle/index.html#blended">A blended family</a></li>
+          <li><a href="life-cycle/index.html#business">Business growth</a></li>
+          <li><a href="life-cycle/index.html#sickness">Serious illness</a></li>
+          <li><a href="life-cycle/index.html#disability">Disability</a></li>
+          <li><a href="life-cycle/index.html#divorce">Divorce</a></li>
+          <li><a href="life-cycle/index.html#retirement">Retirement</a></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -202,6 +228,7 @@
     <div class="footer-links">
       <a href="#services">Practice Areas</a>
       <a href="services/index.html">Services &amp; Pricing</a>
+      <a href="life-cycle/index.html">Life Cycle of Families</a>
       <a href="#about">About</a>
       <a href="blog/index.html">Blog</a>
       <a href="#contact">Contact</a>

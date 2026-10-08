@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Life Cycle of Families | DT Law</title>
+<meta name="description" content="The life events that call for a fresh look at your estate plan, from marriage and new children to business growth, illness, divorce, and retirement.">
+<link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Page-specific styles, built on the site's color tokens */
+  .lc-hero{padding:64px 0 28px;}
+  .lc-hero h1{font-size:clamp(30px,4vw,46px); line-height:1.1; max-width:20ch;}
+  .lc-hero p{font-size:17px; max-width:60ch; margin-top:16px;}
+  .lc-layout{display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:56px; align-items:start; padding:24px 0 88px;}
+
+  .lc-stage{position:relative; padding:0 0 36px 36px; border-left:1px solid var(--line); margin-left:10px;}
+  .lc-stage:last-child{padding-bottom:0;}
+  .lc-stage::before{content:""; position:absolute; left:-6px; top:6px; width:11px; height:11px; border-radius:50%; background:var(--gold);}
+  .lc-stage h2{font-size:26px; line-height:1.2; margin-bottom:6px;}
+  .lc-stage-note{font-size:15.5px; margin-bottom:16px;}
+  .lc-stage-k{font-size:13px; font-weight:500; color:var(--forest); margin-bottom:6px; letter-spacing:.01em;}
+
+  .ev{background:var(--white); border:1px solid var(--line); border-radius:3px; margin-bottom:10px;}
+  .ev[open]{border-color:var(--forest); box-shadow:0 1px 0 var(--forest);}
+  .ev summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:16px 18px;}
+  .ev summary::-webkit-details-marker{display:none;}
+  .ev summary:focus-visible{outline:2px solid var(--forest); outline-offset:2px;}
+  .ev-num{flex:none; width:30px; height:30px; border-radius:50%; background:var(--paper); border:1px solid var(--line); color:var(--forest); font:600 13px 'Inter',sans-serif; display:inline-flex; align-items:center; justify-content:center;}
+  .ev[open] .ev-num{background:var(--forest); border-color:var(--forest); color:#fff;}
+  .ev-title{flex:1; font-family:'Fraunces',serif; font-size:19px; line-height:1.25; color:var(--ink);}
+  .ev-when{font-size:13px; color:var(--ink-soft); white-space:nowrap;}
+  .ev-chev{flex:none; width:10px; height:10px; border-right:2px solid var(--ink-soft); border-bottom:2px solid var(--ink-soft); transform:rotate(45deg); transition:transform .2s ease; margin-left:4px;}
+  .ev[open] .ev-chev{transform:rotate(-135deg);}
+  .ev-picked .ev-title::after{content:"Added to your list"; font:500 12px 'Inter',sans-serif; color:var(--forest); border:1px solid var(--forest); border-radius:99px; padding:2px 9px; margin-left:10px; vertical-align:middle;}
+  .ev-body{padding:2px 22px 22px 62px; border-top:1px solid var(--line);}
+  .ev-body p{font-size:16px;}
+  .ev-lead{margin:18px 0 14px;}
+  .ev-body h3{font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--forest); margin:0 0 8px;}
+  .ev-body ul{margin:0 0 18px; padding-left:20px; color:var(--ink-soft);}
+  .ev-body li{margin-bottom:6px; font-size:15.5px;}
+  .ev-pick{display:inline-flex; align-items:center; gap:10px; font-size:15px; color:var(--ink); cursor:pointer; padding:10px 14px; border:1px solid var(--line); border-radius:3px; background:var(--paper);}
+  .ev-pick input{width:18px; height:18px; accent-color:var(--forest);}
+  .ev-pick:hover{border-color:var(--forest);}
+
+  .lc-panel{position:sticky; top:96px; background:var(--white); border:1px solid var(--line); border-top:3px solid var(--forest); border-radius:3px; padding:24px 22px;}
+  .lc-panel h2{font-size:22px; margin-bottom:6px;}
+  .lc-panel p{font-size:15px;}
+  .lc-empty{font-size:15px; color:var(--ink-soft);}
+  .lc-list{list-style:none; margin:14px 0 18px; padding:0; display:grid; gap:12px;}
+  .lc-list li{border-left:3px solid var(--gold); padding:2px 0 2px 12px;}
+  .lc-list strong{display:block; font-size:15.5px; font-weight:600; color:var(--ink); line-height:1.35;}
+  .lc-list span{display:block; font-size:13px; color:var(--ink-soft); margin-top:2px;}
+  .lc-count{font-size:13px; color:var(--forest); font-weight:500; margin-bottom:4px;}
+  .lc-actions{display:flex; gap:12px; align-items:center; flex-wrap:wrap;}
+  .lc-reset{background:none; border:0; font:inherit; font-size:14px; color:var(--forest); text-decoration:underline; text-underline-offset:3px; cursor:pointer; padding:4px 0;}
+  .lc-fine{font-size:13px; margin:16px 0 0; color:var(--ink-soft);}
+
+  .lc-note{font-size:14px; border-top:1px solid var(--line); padding-top:18px; margin-top:40px; max-width:80ch;}
+
+  @media (max-width:980px){
+    .lc-layout{grid-template-columns:1fr; gap:28px;}
+    .lc-panel{position:static; order:-1;}
+  }
+  @media (max-width:600px){
+    .lc-hero{padding-top:44px;}
+    .lc-stage{padding-left:22px;}
+    .ev summary{flex-wrap:wrap; gap:6px 12px; padding:14px;}
+    .ev-when{order:3; flex-basis:100%; padding-left:44px; margin-top:-6px;}
+    .ev-body{padding:2px 16px 20px 16px;}
+    .ev-chev{display:none;}
+  }
+  @media print{ header, footer, .lc-panel, .ev-pick{display:none;} .ev{break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="../index.html#top" class="wordmark">
+      <img src="../assets/logo-full.svg" alt="DT Law" class="wordmark-mark" height="52">
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="../services/index.html">Services &amp; Pricing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#process">How It Works</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html#contact" class="btn">Schedule a Consultation</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="lc-hero">
+    <div class="wrap">
+      <p class="eyebrow">The Life Cycle of Families</p>
+      <h1>When life changes, your plan should too.</h1>
+      <p>An estate plan is not a one-time purchase. It is a living record of who your family is today. These are the moments when families most often need a fresh look, and the documents that tend to need attention. Open any event to see what changes, and tick the ones that apply to you for a personal review list.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="lc-layout">
+
+      <div class="lc-timeline">
+
+        <section class="lc-stage" aria-labelledby="st1">
+          <p class="lc-stage-k">Stage 1</p>
+          <h2 id="st1">Starting out together</h2>
+          <p class="lc-stage-note">Two lives, and often two sets of paperwork, come together.</p>
+
+          <details class="ev" id="marriage" data-title="Marriage or committing to a partner" data-docs="will bene hcpoa fpoa title">
+            <summary><span class="ev-num">1</span><span class="ev-title">Marriage or committing to a partner</span><span class="ev-when">Soon after</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">Documents you signed before may name people who are no longer your closest circle. If you are not married, your partner generally has no automatic right to inherit from you or to make medical decisions for you. If you are married, a spouse has rights under Illinois law that may or may not match what you intend.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>Who receives your property under your will, and who is named executor</li>
+                <li>Beneficiaries on retirement accounts, life insurance, and bank accounts</li>
+                <li>Your health care and financial agents</li>
+                <li>How a home or joint accounts are titled</li>
+                <li>Whether a prenuptial or cohabitation agreement fits your situation</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="home" data-title="Buying a home" data-docs="title will trust insurance">
+            <summary><span class="ev-num">2</span><span class="ev-title">Buying a home</span><span class="ev-when">At closing</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">The way you take title decides who receives the home and whether it has to go through probate. It is much easier to choose on purpose at closing than to fix it later.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>How title is held: individually, jointly, in a trust, or with a transfer on death instrument</li>
+                <li>What happens if one owner dies or becomes unable to manage the property</li>
+                <li>Whether life or disability insurance covers the mortgage</li>
+                <li>Whether your will or trust needs to be updated to reflect the new asset</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+        </section>
+
+        <section class="lc-stage" aria-labelledby="st2">
+          <p class="lc-stage-k">Stage 2</p>
+          <h2 id="st2">Growing the family</h2>
+          <p class="lc-stage-note">Children and new relationships raise the stakes for every document.</p>
+
+          <details class="ev" id="children" data-title="A new child or adoption" data-docs="guardian will trust bene insurance">
+            <summary><span class="ev-num">3</span><span class="ev-title">A new child or adoption</span><span class="ev-when">Right away</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">A child cannot manage an inheritance, and if both parents were gone, a court would decide who raises your child unless you have said otherwise. This is the single most common reason parents come in.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>A guardian, and a backup, named for your child</li>
+                <li>Whether a trust should hold money for your child until an age you choose</li>
+                <li>Beneficiaries on life insurance and retirement accounts</li>
+                <li>Enough life insurance to replace income and cover your child&rsquo;s needs</li>
+                <li>Who controls any education savings account</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="blended" data-title="New family members: a blended family" data-docs="will trust bene guardian insurance title">
+            <summary><span class="ev-num">4</span><span class="ev-title">New family members: a blended family</span><span class="ev-when">Before or soon after</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">When a family combines, the default rules rarely fit. Stepchildren generally inherit nothing from a stepparent unless they are named. A surviving spouse also has rights that can compete with children from an earlier relationship. Without a plan, good intentions can turn into family conflict.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>How to provide for a spouse for life while protecting what passes to your own children, often with a trust</li>
+                <li>Who is named guardian, executor, and trustee, and whether they are neutral enough</li>
+                <li>Beneficiaries on accounts that bypass your will</li>
+                <li>Life insurance used to balance what each part of the family receives</li>
+                <li>Which assets are shared and which stay separate</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="turns18" data-title="Your child turns 18" data-docs="hcpoa fpoa guardian snt">
+            <summary><span class="ev-num">5</span><span class="ev-title">Your child turns 18</span><span class="ev-when">Before the 18th birthday</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">At 18, a young person becomes a legal adult. Parents lose automatic authority to speak with doctors, see medical records, or handle money, even if the child is away at school or has a disability.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>A health care power of attorney and records release for your young adult</li>
+                <li>A financial power of attorney</li>
+                <li>For a child with a disability: whether guardianship, or a less restrictive alternative, is the right fit</li>
+                <li>Whether public benefits apply, and how an inheritance should be left to protect them</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+        </section>
+
+        <section class="lc-stage" aria-labelledby="st3">
+          <p class="lc-stage-k">Stage 3</p>
+          <h2 id="st3">Building a livelihood</h2>
+          <p class="lc-stage-note">Work changes what you own, what you owe, and what your family relies on.</p>
+
+          <details class="ev" id="business" data-title="Business growth" data-docs="biz trust fpoa insurance will">
+            <summary><span class="ev-num">6</span><span class="ev-title">Business growth</span><span class="ev-when">At each milestone</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">As a business grows, so does the share of your wealth, and your family&rsquo;s income, that depends on it. Without a plan, a death or disability can freeze the business at the moment it is most vulnerable.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>Who runs the business if you cannot, and who owns it afterward</li>
+                <li>Operating or shareholder agreements, and buy-sell terms with partners</li>
+                <li>Whether business interests should be held in a trust</li>
+                <li>Key-person and life insurance to fund a transition</li>
+                <li>A financial power of attorney that covers business decisions</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="career" data-title="Change of career" data-docs="bene insurance fpoa biz">
+            <summary><span class="ev-num">7</span><span class="ev-title">Change of career</span><span class="ev-when">When you start the new role</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">A new job or self-employment changes your benefits, retirement accounts, and risks, and it often creates new accounts that start with an empty beneficiary form.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>Beneficiary forms on the new employer&rsquo;s retirement plan and life insurance</li>
+                <li>What happens to old retirement accounts you leave behind</li>
+                <li>If you become self-employed: a business entity, insurance, and a plan for continuity</li>
+                <li>Whether your life and disability coverage still match your family&rsquo;s needs</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="jobloss" data-title="Job loss" data-docs="insurance bene fpoa hcpoa">
+            <summary><span class="ev-num">8</span><span class="ev-title">Job loss</span><span class="ev-when">As soon as you can</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">When a job ends, employer-provided life and health coverage may end with it, just when a family is most exposed. You may not be able to afford a full plan right now, but the basics matter more, not less.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>Whether group life or disability insurance stops, and how to replace it</li>
+                <li>Decisions about retirement accounts, and who is named as beneficiary on any new account</li>
+                <li>That health care and financial powers of attorney are in place, so someone can act if you are ill or stressed</li>
+                <li>Which documents can wait, and which cannot</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+        </section>
+
+        <section class="lc-stage" aria-labelledby="st4">
+          <p class="lc-stage-k">Stage 4</p>
+          <h2 id="st4">When life changes suddenly</h2>
+          <p class="lc-stage-note">Illness, disability, and the end of a relationship can arrive without warning. Documents must be signed while you are able to sign them.</p>
+
+          <details class="ev" id="sickness" data-title="Serious illness" data-docs="hcpoa fpoa trust will bene">
+            <summary><span class="ev-num">9</span><span class="ev-title">Serious illness</span><span class="ev-when">As soon as possible</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">After a serious diagnosis, the most valuable step is to put decision-makers and wishes in writing while you can. Documents have to be signed while you understand what you are signing, and that window can close.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>A health care power of attorney and living will that reflect your wishes</li>
+                <li>A financial power of attorney so bills, taxes, and property are managed</li>
+                <li>Whether a trust would let someone step in without court involvement</li>
+                <li>Long-term care costs and how benefit rules, including look-back periods, could affect planning</li>
+                <li>Beneficiary forms, so they match your current wishes</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="disability" data-title="Disability, yours or a loved one's" data-docs="snt guardian will trust bene hcpoa fpoa">
+            <summary><span class="ev-num">10</span><span class="ev-title">Disability, yours or a loved one&rsquo;s</span><span class="ev-when">At diagnosis, and at every transition</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">Public benefits such as SSI and Medicaid have strict limits on money and property. A gift or inheritance left directly to a person with a disability can cost them those benefits. The right tools protect both the benefits and the person.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>A supplemental (special needs) trust, so an inheritance adds to benefits instead of replacing them</li>
+                <li>Who will care for your loved one, and who will manage the money, after you</li>
+                <li>Guardianship, or a less restrictive alternative, for an adult who needs support</li>
+                <li>A letter of intent that tells future caregivers who your loved one is</li>
+                <li>Whether other relatives&rsquo; wills accidentally leave money outright to your loved one</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="separation" data-title="Separation" data-docs="hcpoa fpoa bene will title">
+            <summary><span class="ev-num">11</span><span class="ev-title">Separation</span><span class="ev-when">Before making changes</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">A separation does not by itself cancel your documents. Your spouse may still be your agent, your beneficiary, and your executor. At the same time, changes made while a case is pending may be restricted, so this is a moment to coordinate carefully.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>Who is currently named in your will, powers of attorney, and beneficiary forms</li>
+                <li>What your family law attorney or any court order allows you to change right now</li>
+                <li>Securing copies of documents and account information</li>
+                <li>A short-term plan for your children if something happens to you</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="divorce" data-title="Divorce" data-docs="will trust hcpoa fpoa bene guardian title insurance">
+            <summary><span class="ev-num">12</span><span class="ev-title">Divorce</span><span class="ev-when">When the divorce is final</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">Illinois law cancels some gifts and roles for a former spouse automatically, but not everything. Accounts with a named beneficiary, such as retirement plans and some insurance, may still pay a former spouse unless you change them. A final decree is the moment to start fresh.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>A new will or trust that reflects your life now</li>
+                <li>New health care and financial agents</li>
+                <li>Beneficiary forms on every account and policy</li>
+                <li>Guardian choices for your children, and provisions for their inheritance</li>
+                <li>Title to your home and accounts</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+        </section>
+
+        <section class="lc-stage" aria-labelledby="st5">
+          <p class="lc-stage-k">Stage 5</p>
+          <h2 id="st5">Later chapters</h2>
+          <p class="lc-stage-note">The focus shifts to passing things on well and to being cared for.</p>
+
+          <details class="ev" id="retirement" data-title="Retirement" data-docs="bene trust fpoa hcpoa will title">
+            <summary><span class="ev-num">13</span><span class="ev-title">Retirement</span><span class="ev-when">In the year before and after</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">Retirement turns a lifetime of saving into a source of income and an inheritance. The rules for retirement accounts matter, because most non-spouse heirs must now empty an inherited account within ten years, with tax consequences.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>Beneficiary designations on every retirement account, and whether a trust should be named</li>
+                <li>Powers of attorney, since you may rely on others more as you age</li>
+                <li>Long-term care planning and how you would pay for it</li>
+                <li>Downsizing, moving, and how any new property is titled</li>
+                <li>Charitable giving and legacy wishes</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+
+          <details class="ev" id="death" data-title="Death of a loved one" data-docs="will trust bene hcpoa fpoa title">
+            <summary><span class="ev-num">14</span><span class="ev-title">Death of a loved one</span><span class="ev-when">Within weeks, then within months</span><span class="ev-chev" aria-hidden="true"></span></summary>
+            <div class="ev-body">
+              <p class="ev-lead">A death starts two tasks at once: settling the estate, and updating your own plan. If you are named as executor or trustee, there are deadlines, including filing the will with the court. If you are the survivor, the person you relied on may have been your agent, your guardian choice, or your beneficiary.</p>
+              <h3>Worth reviewing</h3>
+              <ul>
+                <li>If you are an executor or trustee: what to file and by when, and what duties you now have</li>
+                <li>Replacing agents, executors, and guardians who can no longer serve</li>
+                <li>Beneficiary forms and the title to accounts and property</li>
+                <li>Where an inheritance you receive should go, especially if a family member has special needs</li>
+              </ul>
+              <label class="ev-pick"><input type="checkbox"> This applies to me</label>
+            </div>
+          </details>
+        </section>
+
+        <p class="lc-note">This page is general information about common situations. It is not legal advice, and it does not create an attorney-client relationship. Your own situation depends on your facts and on Illinois law, which changes. Your selections here stay in your browser and are not sent to DT Law. See the <a href="../disclaimer/index.html">Disclaimer</a> and <a href="../privacy/index.html">Privacy Policy</a>.</p>
+      </div>
+
+      <aside class="lc-panel" aria-label="Your review list" aria-live="polite">
+        <h2>Your review list</h2>
+        <div id="lc-out"><p class="lc-empty">Open an event and tick <strong>This applies to me</strong>. We will list the documents most worth looking at first.</p></div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p class="footer-note">DT Law is a solo Illinois practice focused on estate planning, special needs trusts, guardianship, and education advocacy. This site is for general information only and does not constitute legal advice or create an attorney-client relationship.</p>
+    <div class="footer-links">
+      <a href="../index.html#services">Practice Areas</a>
+      <a href="../services/index.html">Services &amp; Pricing</a>
+      <a href="../life-cycle/index.html">Life Cycle of Families</a>
+      <a href="../index.html#about">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../disclaimer/index.html">Disclaimer</a>
+      <a href="../privacy/index.html">Privacy</a>
+    </div>
+  </div>
+  <div class="wrap"><p class="footer-note" style="max-width:none; margin-top:28px;">&copy; 2026 DT Law. All rights reserved.</p></div>
+</footer>
+
+<script>
+  var DOCS = {
+    will:     'Your will',
+    trust:    'Revocable living trust',
+    fpoa:     'Financial power of attorney',
+    hcpoa:    'Health care power of attorney and living will',
+    bene:     'Beneficiary designations (retirement, insurance, bank accounts)',
+    guardian: 'Guardian nominations for children',
+    snt:      'Special needs planning',
+    biz:      'Business agreements and succession plan',
+    title:    'How your home and accounts are titled',
+    insurance:'Life and disability insurance'
+  };
+  var out = document.getElementById('lc-out');
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function update(){
+    var picked = [].slice.call(document.querySelectorAll('.ev')).filter(function(ev){ return ev.querySelector('.ev-pick input').checked; });
+    document.querySelectorAll('.ev').forEach(function(ev){ ev.classList.toggle('ev-picked', ev.querySelector('.ev-pick input').checked); });
+    if (!picked.length){
+      out.innerHTML = '<p class="lc-empty">Open an event and tick <strong>This applies to me</strong>. We will list the documents most worth looking at first.</p>';
+      return;
+    }
+    var tally = {};
+    picked.forEach(function(ev){
+      ev.getAttribute('data-docs').split(' ').forEach(function(d){
+        (tally[d] = tally[d] || []).push(ev.getAttribute('data-title'));
+      });
+    });
+    var keys = Object.keys(tally).sort(function(a, b){ return tally[b].length - tally[a].length; });
+    var html = '<p class="lc-count">' + picked.length + (picked.length === 1 ? ' event selected' : ' events selected') + '</p>' +
+      '<p>Start with these, in this order:</p><ul class="lc-list">' +
+      keys.map(function(k){ return '<li><strong>' + esc(DOCS[k]) + '</strong><span>' + esc(tally[k].join(', ')) + '</span></li>'; }).join('') +
+      '</ul><div class="lc-actions"><a class="btn" href="../index.html#contact">Schedule a consultation</a><button type="button" class="lc-reset" id="lc-reset">Clear selections</button></div>' +
+      '<p class="lc-fine">A starting point for our conversation, not legal advice.</p>';
+    out.innerHTML = html;
+    document.getElementById('lc-reset').addEventListener('click', function(){
+      document.querySelectorAll('.ev-pick input').forEach(function(i){ i.checked = false; });
+      update();
+    });
+  }
+  document.querySelectorAll('.ev-pick input').forEach(function(i){ i.addEventListener('change', update); });
+
+  /* open the event named in the link, e.g. life-cycle/#divorce */
+  function fromHash(){
+    var el = location.hash && document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === 'DETAILS'){ el.open = true; el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+  fromHash(); window.addEventListener('hashchange', fromHash);
+
+  var header = document.getElementById('site-header');
+  window.addEventListener('scroll', function(){ header.classList.toggle('scrolled', window.scrollY > 8); }, {passive:true});
+  var toggle = document.getElementById('menuToggle'), navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', function(){ var open = navlinks.classList.toggle('open'); toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+  navlinks.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ navlinks.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }); });
+</script>
+</body>
+</html>
