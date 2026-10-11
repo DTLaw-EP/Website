@@ -1,11 +1,16 @@
 # DT Law
 
-> DT Law is a solo Illinois estate planning practice in Naperville, Illinois, serving families across the Chicago suburbs. The firm plans for families as they really are: blended, unmarried, growing, or caring for a loved one with special needs. Services include wills, powers of attorney, revocable living trusts, special needs trusts, guardianship, and education advocacy. Content on this site is general information about Illinois law, not legal advice.
+> DT Law is a solo Illinois estate planning practice in Naperville, Illinois, serving families in DuPage, Will, and Kane counties, Illinois. The firm plans for families as they really are: blended, unmarried, growing, or caring for a loved one with special needs. Services include wills, powers of attorney, revocable living trusts, special needs trusts, and guardianship. Content on this site is general information about Illinois law, not legal advice.
 
 ## Key pages
 
 - [Services and Pricing](https://dtlaw-ep.com/services/): The Foundation Plan (flat fee), Living Trust Plan, and Special Needs Plan, what each includes, the hours each covers, and how fees work.
 - [The Life Cycle of Families](https://dtlaw-ep.com/life-cycle/): Fourteen life events that call for a fresh look at an estate plan, from marriage and new children to illness, divorce, and retirement, with the documents to review for each.
+- [About Yung Truong](https://dtlaw-ep.com/about/): Attorney background, education, admission, and languages (English and Vietnamese).
+- [Estate Planning](https://dtlaw-ep.com/estate-planning/): Wills, powers of attorney, living wills, and revocable living trusts.
+- [Special Needs Trusts](https://dtlaw-ep.com/special-needs-trusts/): Third-party and first-party (payback) special needs trusts and ABLE account guidance.
+- [Guardianship](https://dtlaw-ep.com/guardianship/): Planning before a child turns 18, less restrictive alternatives, and adult guardianship, filed in DuPage, Will, and Kane counties.
+- Each life event in [The Life Cycle of Families](https://dtlaw-ep.com/life-cycle/) has its own page, such as /life-cycle/divorce/ and /life-cycle/new-child/.
 - [Family Plan Simulator](https://dtlaw-ep.com/planner/): A free educational tool that helps families visualize relationships and money flow. Entries stay in the visitor's own browser.
 - [Blog](https://dtlaw-ep.com/blog/): Articles on special needs trusts, guardianship timelines, and ABA-informed education advocacy.
 
