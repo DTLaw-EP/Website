@@ -71,3 +71,86 @@ details.faq a{color:var(--forest);}
 }
 @media (max-width:600px){ .pg-hero{padding-top:44px;} }
 @media print{ header, footer, .pg-aside, .pg-band, .pg-cta-row{display:none;} }
+
+/* ---- illustrated guide pages (guides/*) ---- */
+.hl{background:linear-gradient(transparent 58%, rgba(184,146,63,.40) 58%); color:inherit; padding:0 .08em;}
+.pg-main{min-width:0;}
+.gd-lead{font-size:17px; max-width:64ch;}
+.gd-scen{margin:18px 0 8px;}
+.gd-tabs{display:none; gap:8px; flex-wrap:wrap; margin:0 0 16px;}
+.gd-scen.js .gd-tabs{display:flex;}
+.gd-tab{font:500 14.5px 'Inter',sans-serif; color:var(--ink); background:var(--white); border:1px solid var(--line); border-radius:999px; padding:9px 16px; cursor:pointer;}
+.gd-tab:hover{border-color:var(--forest);}
+.gd-tab[aria-selected="true"]{background:var(--forest); border-color:var(--forest); color:var(--white);}
+.gd-tab:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+.gd-panel{background:var(--white); border:1px solid var(--line); border-radius:6px; padding:22px 24px 20px; margin:0 0 16px;}
+.gd-scen.js .gd-panel{display:none; margin:0;}
+.gd-scen.js .gd-panel.on{display:block;}
+.gd-panel h3{font-size:22px; margin:0 0 6px;}
+.gd-fig{margin:10px 0 12px; overflow-x:auto;}
+.gd-fig svg{display:block; width:100%; height:auto; max-height:340px;}
+.gd-why{font-size:16.5px; margin:0; max-width:none;}
+.gd-key{display:flex; gap:18px; flex-wrap:wrap; font-size:13.5px; color:var(--ink-soft); margin:0 0 6px;}
+.gd-key span{display:inline-flex; align-items:center; gap:7px;}
+.gd-key i{display:inline-block; width:16px; height:16px; border-radius:4px; border:2px solid var(--line); background:var(--white);}
+.gd-key i.k-heir{border-color:var(--gold); border-width:3px;}
+.gd-key i.k-self{background:var(--forest); border-color:var(--forest-deep);}
+.gd-key i.k-out{border-style:dashed; border-color:var(--ink-soft); background:var(--paper-warm);}
+
+/* svg parts */
+.n{fill:var(--white); stroke:var(--line); stroke-width:1.5;}
+.n-self{fill:var(--forest); stroke:var(--forest-deep);}
+.n-heir{stroke:var(--gold); stroke-width:3.5;}
+.n-out{fill:var(--paper-warm); stroke:var(--ink-soft); stroke-dasharray:6 5;}
+.n-ghost{fill:var(--paper); stroke:var(--line); stroke-dasharray:3 4;}
+.n-t{font:600 18px 'Inter',sans-serif; fill:var(--ink); text-anchor:middle;}
+.n-s{font:400 14px 'Inter',sans-serif; fill:var(--ink-soft); text-anchor:middle;}
+.n-self + .n-t, .t-self{fill:var(--white);}
+.t-self-s{fill:#DCE3D4;}
+.bd{fill:var(--gold);}
+.bd-t{font:600 15px 'Inter',sans-serif; fill:var(--white); text-anchor:middle;}
+.ln{stroke:var(--ink-soft); stroke-width:1.8; fill:none;}
+.ln-f{stroke:var(--line); stroke-width:1.6; stroke-dasharray:4 4; fill:none;}
+.xm{stroke:var(--ink-soft); stroke-width:2; fill:none;}
+.xc{fill:var(--white); stroke:var(--ink-soft); stroke-width:1.5;}
+
+/* ordered ladder */
+.gd-ladder{list-style:none; counter-reset:rung; padding:0 !important; margin:0 0 1.2em; display:grid; gap:8px;}
+.gd-ladder li{counter-increment:rung; position:relative; background:var(--white); border:1px solid var(--line); border-radius:4px; padding:12px 16px 12px 56px; margin:0 !important; font-size:16px;}
+.gd-ladder li::before{content:counter(rung); position:absolute; left:14px; top:50%; transform:translateY(-50%); width:28px; height:28px; border-radius:50%; background:var(--forest); color:var(--white); font:600 14px 'Inter',sans-serif; display:flex; align-items:center; justify-content:center;}
+.gd-ladder li b{color:var(--ink); font-weight:600;}
+.gd-ladder li span{color:var(--ink-soft);}
+
+/* two lanes */
+.gd-lanes{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:8px 0 6px;}
+.gd-lane{background:var(--white); border:1px solid var(--line); border-radius:6px; overflow:hidden;}
+.gd-lane h3{margin:0; padding:14px 18px; font:600 15px 'Inter',sans-serif; color:var(--white);}
+.gd-lane.l1 h3{background:var(--forest);}
+.gd-lane.l2 h3{background:var(--gold);}
+.gd-lane p{margin:0; padding:12px 18px 0; font-size:15px; color:var(--ink-soft);}
+.gd-lane ul{list-style:none; margin:0; padding:10px 18px 16px; display:grid; gap:8px;}
+.gd-lane li{margin:0; padding:9px 12px; border:1px solid var(--line); border-radius:4px; font-size:15.5px; background:var(--paper);}
+.gd-lane li small{display:block; color:var(--ink-soft); font-size:13px;}
+
+/* probate road */
+.gd-road{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:8px 0 8px; counter-reset:step;}
+.gd-step{background:var(--white); border:1px solid var(--line); border-top:3px solid var(--gold); border-radius:4px; padding:16px 16px 14px; position:relative;}
+.gd-step svg{width:44px; height:44px; display:block; margin-bottom:8px;}
+.gd-step b{display:block; font:500 17px 'Fraunces',serif; line-height:1.25; margin-bottom:6px; color:var(--ink);}
+.gd-step p{font-size:14.5px !important; margin:0 !important; color:var(--ink-soft);}
+.gd-step .gd-n{position:absolute; top:-14px; right:12px; background:var(--forest); color:var(--white); width:28px; height:28px; border-radius:50%; font:600 14px 'Inter',sans-serif; display:flex; align-items:center; justify-content:center;}
+.gd-time{display:inline-block; background:var(--paper-warm); border:1px solid var(--line); border-radius:999px; padding:7px 16px; font-size:14.5px; color:var(--ink); margin:6px 0 0;}
+
+/* comparison table */
+.gd-table-wrap{overflow-x:auto; margin:8px 0 6px;}
+.gd-table{width:100%; border-collapse:collapse; font-size:15.5px; background:var(--white); border:1px solid var(--line);}
+.gd-table th, .gd-table td{text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+.gd-table thead th{background:var(--forest); color:var(--white); font:600 14px 'Inter',sans-serif;}
+.gd-table tbody th{font-weight:600; color:var(--ink); width:24%; background:var(--paper);}
+.gd-table td{color:var(--ink-soft);}
+
+.gd-sources{font-size:14px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:14px; margin-top:34px;}
+.gd-sources a{color:var(--forest);}
+
+@media (max-width:980px){ .gd-road{grid-template-columns:1fr 1fr;} }
+@media (max-width:720px){ .gd-lanes{grid-template-columns:1fr;} .gd-road{grid-template-columns:1fr;} .gd-panel{padding:18px 16px;} .gd-table th, .gd-table td{padding:10px;} }

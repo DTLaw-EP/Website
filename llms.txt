@@ -11,6 +11,7 @@
 - [Special Needs Trusts](https://dtlaw-ep.com/special-needs-trusts/): Third-party and first-party (payback) special needs trusts and ABLE account guidance.
 - [Guardianship](https://dtlaw-ep.com/guardianship/): Planning before a child turns 18, less restrictive alternatives, and adult guardianship, filed in DuPage, Will, and Kane counties.
 - Each life event in [The Life Cycle of Families](https://dtlaw-ep.com/life-cycle/) has its own page, such as /life-cycle/divorce/ and /life-cycle/new-child/.
+- [What happens if you die without a will in Illinois](https://dtlaw-ep.com/guides/die-without-a-will-illinois/): An illustrated guide to who inherits under Illinois law when there is no will, how probate works without one, and which assets the default rules do not control.
 - [Family Plan Simulator](https://dtlaw-ep.com/planner/): A free educational tool that helps families visualize relationships and money flow. Entries stay in the visitor's own browser.
 - [Blog](https://dtlaw-ep.com/blog/): Articles on special needs trusts, guardianship timelines, and ABA-informed education advocacy.
 
