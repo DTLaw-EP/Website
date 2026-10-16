@@ -154,3 +154,22 @@ details.faq a{color:var(--forest);}
 
 @media (max-width:980px){ .gd-road{grid-template-columns:1fr 1fr;} }
 @media (max-width:720px){ .gd-lanes{grid-template-columns:1fr;} .gd-road{grid-template-columns:1fr;} .gd-panel{padding:18px 16px;} .gd-table th, .gd-table td{padding:10px;} }
+
+/* ---- guides hub ---- */
+.gd-meta{font-size:13.5px; color:var(--ink-soft); margin:12px 0 0;}
+.gd-cards{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:8px 0 8px;}
+.gd-card{background:var(--white); border:1px solid var(--line); border-top:3px solid var(--gold); border-radius:4px; padding:20px 22px 18px;}
+.gd-card-tag{font:600 12px 'Inter',sans-serif; letter-spacing:.06em; text-transform:uppercase; color:var(--forest); margin:0 0 8px !important;}
+.gd-card h3{font-size:21px; line-height:1.25; margin:0 0 8px;}
+.gd-card h3 a{color:var(--ink); text-decoration:none;}
+.gd-card h3 a:hover{color:var(--forest); text-decoration:underline; text-underline-offset:3px;}
+.gd-card p{font-size:15.5px !important; color:var(--ink-soft); margin:0 0 8px !important;}
+.gd-card-meta{font-size:13px !important; margin-bottom:0 !important;}
+.gd-evlist{display:grid; gap:10px; margin:8px 0 16px;}
+.gd-ev{display:grid; grid-template-columns:minmax(0,220px) minmax(0,1fr); gap:6px 18px; background:var(--white); border:1px solid var(--line); border-radius:4px; padding:14px 18px; align-items:baseline;}
+.gd-ev-name{font:500 18px 'Fraunces',serif; color:var(--ink); text-decoration:none;}
+.gd-ev-name:hover{color:var(--forest); text-decoration:underline;}
+.gd-ev ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px 16px;}
+.gd-ev li{margin:0; font-size:15.5px;}
+.gd-ev li a{color:var(--forest);}
+@media (max-width:720px){ .gd-cards{grid-template-columns:1fr;} .gd-ev{grid-template-columns:1fr;} }

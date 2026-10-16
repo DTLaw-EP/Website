@@ -11,9 +11,12 @@
 - [Special Needs Trusts](https://dtlaw-ep.com/special-needs-trusts/): Third-party and first-party (payback) special needs trusts and ABLE account guidance.
 - [Guardianship](https://dtlaw-ep.com/guardianship/): Planning before a child turns 18, less restrictive alternatives, and adult guardianship, filed in DuPage, Will, and Kane counties.
 - Each life event in [The Life Cycle of Families](https://dtlaw-ep.com/life-cycle/) has its own page, such as /life-cycle/divorce/ and /life-cycle/new-child/.
-- [What happens if you die without a will in Illinois](https://dtlaw-ep.com/guides/die-without-a-will-illinois/): An illustrated guide to who inherits under Illinois law when there is no will, how probate works without one, and which assets the default rules do not control.
 - [Family Plan Simulator](https://dtlaw-ep.com/planner/): A free educational tool that helps families visualize relationships and money flow. Entries stay in the visitor's own browser.
-- [Blog](https://dtlaw-ep.com/blog/): Articles on special needs trusts, guardianship timelines, and ABA-informed education advocacy.
+- [Guides](https://dtlaw-ep.com/guides/): Plain-English, illustrated guides to Illinois estate planning, special needs trusts, and guardianship, organized by life event.
+  - [What happens if you die without a will in Illinois](https://dtlaw-ep.com/guides/die-without-a-will-illinois/): Who inherits under Illinois law when there is no will, how probate works without one, and which assets the default rules do not control.
+  - [Guardianship when a child turns 18](https://dtlaw-ep.com/guides/guardianship-timeline/): Why the process starts six to twelve months early, and the less restrictive options.
+  - [Special needs trusts and inheritances](https://dtlaw-ep.com/guides/special-needs-trust-basics/): How a direct inheritance can affect SSI and Medicaid, and what a special needs trust does.
+  - [ABA-informed IEP advocacy](https://dtlaw-ep.com/guides/aba-informed-advocacy/): What a behavior-therapy background adds at an IEP or 504 meeting.
 
 ## About the firm
 
