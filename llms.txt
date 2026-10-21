@@ -14,6 +14,7 @@
 - [Family Plan Simulator](https://dtlaw-ep.com/planner/): A free educational tool that helps families visualize relationships and money flow. Entries stay in the visitor's own browser.
 - [Guides](https://dtlaw-ep.com/guides/): Plain-English, illustrated guides to Illinois estate planning, special needs trusts, and guardianship, organized by life event.
   - [What happens if you die without a will in Illinois](https://dtlaw-ep.com/guides/die-without-a-will-illinois/): Who inherits under Illinois law when there is no will, how probate works without one, and which assets the default rules do not control.
+  - [Do I need a trust in Illinois](https://dtlaw-ep.com/guides/do-i-need-a-trust-illinois/): Estate size and the tax lines, how a living trust differs from a will, the situations where a trust tends to help, and what a trust does not do.
   - [Guardianship when a child turns 18](https://dtlaw-ep.com/guides/guardianship-timeline/): Why the process starts six to twelve months early, and the less restrictive options.
   - [Special needs trusts and inheritances](https://dtlaw-ep.com/guides/special-needs-trust-basics/): How a direct inheritance can affect SSI and Medicaid, and what a special needs trust does.
   - [ABA-informed IEP advocacy](https://dtlaw-ep.com/guides/aba-informed-advocacy/): What a behavior-therapy background adds at an IEP or 504 meeting.
