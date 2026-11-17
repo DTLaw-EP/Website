@@ -300,3 +300,26 @@ details.faq a{color:var(--forest);}
 .qa-more{display:inline-block; margin-left:6px; color:var(--forest); font-weight:500;}
 details.faq p.qa-meta{font-size:12.5px; color:var(--ink-soft); padding-top:0; margin-top:-4px;}
 .qa-empty{font-size:16px; color:var(--ink-soft); max-width:60ch;}
+
+/* brief */
+#preview, #get{scroll-margin-top:90px;}
+.br-gallery{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin:22px 0 14px;}
+.br-gallery a{display:block; border:1px solid var(--line); background:var(--white); box-shadow:0 6px 18px rgba(30,51,42,.10); transition:transform .2s ease;}
+.br-gallery a:hover{transform:translateY(-3px);}
+.br-gallery img{display:block; width:100%; height:auto;}
+@media (max-width:860px){ .br-gallery{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (prefers-reduced-motion:reduce){ .br-gallery a{transition:none;} .br-gallery a:hover{transform:none;} }
+.br-get{background:var(--white); border:1px solid var(--line); border-top:4px solid var(--forest); border-radius:3px; padding:26px 28px; max-width:760px;}
+.br-get h2{margin-top:0 !important;}
+.br-form{display:grid; gap:10px; max-width:560px;}
+.br-form label{font-size:15px; font-weight:600; color:var(--ink);}
+.br-form input[type=email]{width:100%; font:400 17px/1.45 'Inter',sans-serif; color:var(--ink); background:var(--white); border:1px solid var(--line); border-radius:3px; padding:13px 14px;}
+.br-form input[type=email]:focus{outline:2px solid var(--forest); outline-offset:1px; border-color:var(--forest);}
+.br-form label.br-consent{display:flex; gap:12px; align-items:flex-start; font-weight:400; font-size:15px; line-height:1.45; color:var(--ink-soft);}
+.br-consent input{width:20px; height:20px; margin-top:2px; flex:none; accent-color:var(--forest);}
+.br-submit{justify-self:start; margin-top:6px; cursor:pointer; font-family:'Inter',sans-serif;}
+.br-note{font-size:13.5px; color:var(--ink-soft); margin:10px 0 0; max-width:62ch;}
+.br-ok{max-width:760px; background:var(--white); border:1px solid var(--line); border-top:4px solid var(--forest); border-radius:3px; padding:24px 26px;}
+.br-ok:focus{outline:none;}
+.br-ok h3{font-family:'Fraunces',serif; font-size:24px; margin:0 0 10px; color:var(--forest-deep);}
+.br-ok p{font-size:16.5px; margin:0 0 10px;}
