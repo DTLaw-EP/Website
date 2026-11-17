@@ -51,6 +51,7 @@
       <a href="#about">About</a>
       <a href="#process">How It Works</a>
       <a href="guides/">Guides</a>
+      <a href="ask/">Ask</a>
       <a href="#contact">Contact</a>
       <a href="#contact" class="btn">Schedule a Consultation</a>
     </div>
@@ -253,6 +254,7 @@
       <a href="life-cycle/index.html">Life Cycle of Families</a>
       <a href="#about">About</a>
       <a href="guides/">Guides</a>
+      <a href="ask/">Ask a Question</a>
       <a href="#contact">Contact</a>
       <a href="disclaimer/index.html">Disclaimer</a>
       <a href="privacy/index.html">Privacy</a>
@@ -279,5 +281,29 @@
   }));
 </script>
 
+<!-- ask-nudge:start -->
+<aside id="askNudge" class="ask-nudge" aria-label="Ask a question anonymously" hidden>
+  <button type="button" class="ask-nudge-x" id="askNudgeX" aria-label="Close this message">&times;</button>
+  <p class="ask-nudge-t">Shy about asking?</p>
+  <p class="ask-nudge-p">Send your estate planning question anonymously. No name or email needed.</p>
+  <a class="btn ask-nudge-btn" id="askNudgeGo" href="ask/">Ask anonymously</a>
+</aside>
+<script>
+(function () {
+  var KEY = 'dtAskNudge', nudge = document.getElementById('askNudge'); if (!nudge) return;
+  function recent() { try { var v = localStorage.getItem(KEY); return v && (Date.now() - Number(v) < 14 * 86400000); } catch (e) { return false; } }
+  function remember() { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+  if (recent()) return;
+  var shown = false;
+  function show() { if (shown) return; shown = true; nudge.hidden = false; requestAnimationFrame(function () { nudge.classList.add('show'); }); }
+  function hide() { nudge.classList.remove('show'); setTimeout(function () { nudge.hidden = true; }, 250); remember(); }
+  setTimeout(show, 12000);
+  window.addEventListener('scroll', function () { if (window.scrollY > document.documentElement.scrollHeight * 0.35) show(); }, { passive: true });
+  document.getElementById('askNudgeX').addEventListener('click', hide);
+  document.getElementById('askNudgeGo').addEventListener('click', remember);
+  nudge.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+})();
+</script>
+<!-- ask-nudge:end -->
 </body>
 </html>
