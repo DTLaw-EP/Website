@@ -318,6 +318,7 @@ details.faq p.qa-meta{font-size:12.5px; color:var(--ink-soft); padding-top:0; ma
 .br-form label.br-consent{display:flex; gap:12px; align-items:flex-start; font-weight:400; font-size:15px; line-height:1.45; color:var(--ink-soft);}
 .br-consent input{width:20px; height:20px; margin-top:2px; flex:none; accent-color:var(--forest);}
 .br-submit{justify-self:start; margin-top:6px; cursor:pointer; font-family:'Inter',sans-serif;}
+.br-form[hidden], .br-ok[hidden], .br-get [hidden]{display:none !important;}
 .br-note{font-size:13.5px; color:var(--ink-soft); margin:10px 0 0; max-width:62ch;}
 .br-ok{max-width:760px; background:var(--white); border:1px solid var(--line); border-top:4px solid var(--forest); border-radius:3px; padding:24px 26px;}
 .br-ok:focus{outline:none;}
